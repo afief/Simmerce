@@ -4,84 +4,84 @@
 		{
 			"nama": "Batik Cirebonan",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/1.jpg"
 		},
 		{
 			"nama": "Batik Yogya",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/2.jpg"
 		},
 		{
 			"nama": "Batik Makasar",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/3.jpg"
 		},
 		{
 			"nama": "Batik Sulawesi",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/4.jpg"
 		},
 		{
 			"nama": "Batik Cirebonan",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/5.jpg"
 		},
 		{
 			"nama": "Batik Yogya",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/6.jpg"
 		},
 		{
 			"nama": "Batik Makasar",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/7.jpg"
 		},
 		{
 			"nama": "Batik Sulawesi",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/8.jpg"
 		},
 		{
 			"nama": "Batik Cirebonan",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/9.jpg"
 		},
 		{
 			"nama": "Batik Yogya",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/10.jpg"
 		},
 		{
 			"nama": "Batik Makasar",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/11.jpg"
 		},
 		{
 			"nama": "Batik Sulawesi",
 			"keterangan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida accumsan dolor, commodo tempor libero placerat lobortis. Fusce et finibus sem. Etiam vitae vehicula lectus, a accumsan ligula. Duis in placerat dolor. Aenean sollicitudin neque ac magna cursus fringilla.",
-			"stok": 4,
+			"harga" : 120000,
 			"ukuran": ["S", "M", "L", "XL"],
 			"image": "uploads/12.jpg"
 		}

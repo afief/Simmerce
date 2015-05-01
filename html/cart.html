@@ -1,0 +1,44 @@
+<div class="page home">
+	
+	<div class="row container">
+		<h3 class="title">Checkout</h3>
+
+		<div class="col-sm-4 part">
+			<img class="preview" ng-src="{{selectedItem.image}}" alt="">
+		</div>
+		<div class="col-sm-4 part infoproduk">
+			<h2 class="nama">{{selectedItem.nama}}</h2>
+			<div class="keterangan">{{selectedItem.keterangan}}</div>
+
+			<div class="stok">Harga : <span>Rp {{numberWithCommas(selectedItem.harga)}},-</span></div>
+			<div class="ukuran">Ukuran : 
+				<select name="">
+					<option ng-repeat="uku in selectedItem.ukuran" value="uku">{{uku}}</option>
+				</select>
+			</div>
+			<div class="jumlah stok">
+				Jumlah : 
+				<input type="number" style="width: 100px" ng-model="purchaseItem.jumlah"> buah 
+			</div>
+			<div class="total stok">
+				Harga Total : <span>{{numberWithCommas(hargaTotal)}}</span>
+			</div>
+		</div>
+
+		<div class="col-sm-4 part infoproduk">
+			
+
+			<h2 class="nama">Pengiriman</h2>
+			<a href="http://www.lazada.co.id/shipping/" class="wrapper__shipping">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/lex2.jpg" alt="">
+				<img src="http://srv-live-01.lazada.co.id/cms/logo/themes_2014/53x39_JNE.jpg" alt="">
+				<img src="http://srv-live-01.lazada.co.id/cms/logo/themes_2014/53x39_Pandu-logistic.jpg" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/first-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/rpx-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/tiki-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/nexlogistics-59x39.png" alt="">
+			</a>
+		</div>
+	</div>
+
+</div>

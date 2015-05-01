@@ -5,7 +5,7 @@
 
 		<div class="col-sm-4 part koleksi">
 			<ul class="items">
-				<li ng-repeat="item in items" ng-click="thumbClick(item)" style="background-image: url({{item.image}})">
+				<li ng-repeat="item in items" ng-click="thumbClick(item)" ng-class="{selected: (item == selectedItem)}" style="background-image: url({{item.image}})">
 					<div class="info">
 						{{item.nama}}
 					</div>
@@ -20,19 +20,23 @@
 			<h2 class="nama">{{selectedItem.nama}}</h2>
 			<div class="keterangan">{{selectedItem.keterangan}}</div>
 
-			<div class="stok">Stok: <span>{{selectedItem.stok}}</span></div>
+			<div class="stok">Harga : <span>Rp {{numberWithCommas(selectedItem.harga)}},-</span></div>
 			<div class="ukuran">Ukuran : 
 				<select name="">
 					<option ng-repeat="uku in selectedItem.ukuran" value="uku">{{uku}}</option>
 				</select>
 			</div>
+			<div class="jumlah stok">
+				Jumlah : 
+				<input type="number" style="width: 100px" ng-model="purchaseItem.jumlah"> buah 
+			</div>
 
-			<button>
+			<button ng-click="buyItem(selectedItem)">
 				<span class="icon">
 					<i class="fa fa-cart-plus"></i>
 				</span>
 				<span class="text">
-					Tambahkan
+					Beli Sekarang
 				</span>
 			</button>
 		</div>

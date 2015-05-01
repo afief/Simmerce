@@ -8,13 +8,23 @@ pageModule.config(['$routeProvider',
 			controller: 'HomeController',
 			authenticate: false
 		}).
+		when('/cart', {
+			templateUrl: 'html/cart.html',
+			controller: "CartController",
+			authenticate: false
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
 	}
 	]);
 
-pageModule.controller('HomeController', ['$scope', 'user', function($scope, user){
+pageModule.run(["$rootScope", function($root) {
+	$root.purchaseItem = {}
+}
+]);
+
+pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, location){
 
 	$scope.items = [];
 	$scope.selectedItem = {};
@@ -29,4 +39,27 @@ pageModule.controller('HomeController', ['$scope', 'user', function($scope, user
 		$scope.selectedItem = item;
 	}
 
-}])
+	$root.purchaseItem = {};
+	$scope.buyItem = function(selectedItem) {
+		console.log(selectedItem);
+		$root.purchaseItem.item = selectedItem;
+		location.path("/cart");
+	}
+
+	$scope.numberWithCommas = numberWithCommas;
+
+}]);
+
+pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location) {
+	console.log($root.purchaseItem.item);
+	if ($root.purchaseItem.item) {
+		$scope.hargaTotal = $root.purchaseItem.jumlah * $root.purchaseItem.item.harga;
+		console.log($root.purchaseItem.item.jumlah, $root.purchaseItem.item.harga);
+	} else {
+		$location.path("/");
+	}
+
+	$scope.selectedItem = $root.purchaseItem.item;
+	$scope.numberWithCommas = numberWithCommas;
+
+}]);

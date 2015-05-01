@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Fri, 01 May 2015 08:24:14 +0200 (0.0917s) */
+/* compiled by scssphp v0.0.9 on Fri, 01 May 2015 11:55:16 +0200 (0.0253s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -87,7 +87,8 @@ body {
       border: solid 2px rgba(0, 0, 0, 0.5);
       margin-bottom: 10px;
       box-shadow: 1px 1px 3px -1px #333;
-      border-radius: 0px 3px; }
+      border-radius: 0px 3px;
+      text-align: center; }
       .container .koleksi .items li:nth-child(odd) {
         margin-right: 4%; }
       .container .koleksi .items li .info {
@@ -100,6 +101,11 @@ body {
         font-size: 0.7em;
         background-color: rgba(0, 0, 0, 0.5);
         color: white; }
+      .container .koleksi .items li.selected {
+        border-width: 6px;
+        border-color: #3f51b5; }
+        .container .koleksi .items li.selected .info {
+          background-color: #3f51b5; }
   .container .infoproduk .nama {
     text-align: left; }
     .container .infoproduk .keterangan {
