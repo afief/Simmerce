@@ -1,0 +1,79 @@
+@import "configure";
+@import "elements";
+
+body {
+	background-color: #efefef;
+}
+.container {
+	margin: 20px auto;
+	padding: 0px;
+	max-width: 900px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 3px -2px #444444;
+	h3.title {
+		width: 100%;
+		border-bottom: solid 1px $color_grey5;
+		font-size: x-large;
+		padding: 15px;
+	}
+	.part {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.preview {
+		width: 100%;
+	}
+	
+	.koleksi {
+		.items {
+			padding: 0px;
+			margin: 0px;
+			list-style: none;
+			li {
+				cursor: pointer;
+				display: block;
+				float: left;
+				width: 48%;
+				position: relative;
+				min-height: 150px;
+				background-size: cover;
+				background-repeat: no-repeat;
+				border: solid 2px rgba(0, 0, 0, 0.5);
+				margin-bottom: 10px;
+				box-shadow: 1px 1px 3px -1px $color_grey;
+				border-radius: 0px 3px;
+				&:nth-child(odd) {
+					margin-right: 4%;
+				}
+				.info {
+					position: absolute;
+					bottom: 0px;
+					left: 0px;
+					padding: 7px 10px;
+					width: 100%;
+					font-weight: bold;
+					font-size: 0.7em;
+					background-color: rgba(0, 0, 0, 0.5);
+					color: white;
+				}
+			}
+		}
+	}
+	.infoproduk {
+		.nama {
+			text-align: left;
+		}
+		.keterangan {
+			color: $color_grey;
+		}
+		.stok {
+			margin: 10px 0px;
+			span {
+				font-weight: bold;
+			}
+		}
+		button {
+			margin-top: 10px;
+		}
+	}
+}

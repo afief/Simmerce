@@ -1,0 +1,53 @@
+h2 {
+	
+	text-align: center;
+	color: $color_grey;
+}
+h3, h4 {
+	margin: 0px;
+	color: $color_grey;
+	padding: 0px;
+}
+div {
+}
+form {
+	input {
+		width: 90%;
+		width: calc(100% - 20px);
+		padding: 10px;
+		border: solid 1px $color_primary2;
+		margin: 5px 0px;
+		outline: none;
+		box-shadow: 1px 1px 3px -1px $color_grey;
+		
+	}
+	button {
+		padding: 10px 15px;
+		border: solid 1px $color_primary3;
+		background-color: $color_primary2;
+		box-shadow: 1px 1px 3px -1px $color_grey;
+		color: $color_white;
+		margin: 5px 0px;
+		cursor: pointer;
+		&:hover {
+			background-color: $color_primary1;
+			color: $color_black;
+		}
+	}
+}
+img {
+	max-width: 100%;
+}
+
+button {
+	background-color: $color_primary2;
+	color: white;
+	border: solid 1px $color_primary3;
+	padding: 5px 0px;
+	.icon {
+		padding: 10px;
+	}
+	.text {
+		padding: 10px;
+	}
+}

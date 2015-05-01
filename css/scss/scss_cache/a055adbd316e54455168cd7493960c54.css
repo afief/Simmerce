@@ -1,3 +1,112 @@
-/* compiled by scssphp v0.0.9 on Tue, 28 Apr 2015 10:51:02 +0200 (0.0004s) */
+/* compiled by scssphp v0.0.9 on Fri, 01 May 2015 08:24:14 +0200 (0.0917s) */
 
+@font-face {
+  font-family: "Comic Neue";
+  src: url("../../fonts/ComicNeue-Angular-Regular.woff"); }
 
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/Roboto-Light.ttf"); }
+
+h2 {
+  text-align: center;
+  color: #333; }
+
+h3, h4 {
+  margin: 0px;
+  color: #333;
+  padding: 0px; }
+
+form input {
+  width: 90%;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: solid 1px #3f51b5;
+  margin: 5px 0px;
+  outline: none;
+  box-shadow: 1px 1px 3px -1px #333; }
+  form button {
+    padding: 10px 15px;
+    border: solid 1px #303f9f;
+    background-color: #3f51b5;
+    box-shadow: 1px 1px 3px -1px #333;
+    color: #fff;
+    margin: 5px 0px;
+    cursor: pointer; }
+    form button:hover {
+      background-color: #c5cae9;
+      color: #000; }
+
+img {
+  max-width: 100%; }
+
+button {
+  background-color: #3f51b5;
+  color: white;
+  border: solid 1px #303f9f;
+  padding: 5px 0px; }
+  button .icon {
+    padding: 10px; }
+  button .text {
+    padding: 10px; }
+
+body {
+  background-color: #efefef; }
+
+.container {
+  margin: 20px auto;
+  padding: 0px;
+  max-width: 900px;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px -2px #444; }
+  .container h3.title {
+    width: 100%;
+    border-bottom: solid 1px #eee;
+    font-size: x-large;
+    padding: 15px; }
+  .container .part {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  .container .preview {
+    width: 100%; }
+  .container .koleksi .items {
+    padding: 0px;
+    margin: 0px;
+    list-style: none; }
+    .container .koleksi .items li {
+      cursor: pointer;
+      display: block;
+      float: left;
+      width: 48%;
+      position: relative;
+      min-height: 150px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: solid 2px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+      box-shadow: 1px 1px 3px -1px #333;
+      border-radius: 0px 3px; }
+      .container .koleksi .items li:nth-child(odd) {
+        margin-right: 4%; }
+      .container .koleksi .items li .info {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding: 7px 10px;
+        width: 100%;
+        font-weight: bold;
+        font-size: 0.7em;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white; }
+  .container .infoproduk .nama {
+    text-align: left; }
+    .container .infoproduk .keterangan {
+      color: #333; }
+    .container .infoproduk .stok {
+      margin: 10px 0px; }
+    .container .infoproduk .stok span {
+      font-weight: bold; }
+    .container .infoproduk button {
+      margin-top: 10px; }

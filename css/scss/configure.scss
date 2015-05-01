@@ -1,0 +1,46 @@
+$baseUrl: "../../";
+
+$color_white: #ffffff;
+$color_black: #000000;
+$color_grey: #333;
+$color_grey2: #666;
+$color_grey3: #999;
+$color_grey4: #ccc;
+$color_grey5: #eeeeee;
+
+//indigo
+$color_primary1: #C5CAE9;
+$color_primary2: #3F51B5;
+$color_primary3: #303F9F;
+
+//light green
+$color_secondary1: #DCEDC8;
+$color_secondary2: #8BC34A;
+$color_secondary3: #33691E;
+
+@mixin easing() {
+    -webkit-transition:0.5s ease;
+    -moz-transition:0.5s ease;
+    -o-transition:0.5s ease;
+    -ms-transition:0.5s ease;
+    transition:0.5s ease;
+}
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@font-face {
+    font-family: "Comic Neue";
+    src: url($baseUrl + "fonts/ComicNeue-Angular-Regular.woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url($baseUrl + "fonts/Roboto-Light.ttf");
+}

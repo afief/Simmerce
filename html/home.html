@@ -1,1 +1,41 @@
-Home
+<div class="page home">
+	
+	<div class="row container">
+		<h3 class="title">Koleksi Batik</h3>
+
+		<div class="col-sm-4 part koleksi">
+			<ul class="items">
+				<li ng-repeat="item in items" ng-click="thumbClick(item)" style="background-image: url({{item.image}})">
+					<div class="info">
+						{{item.nama}}
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-4 part">
+			<img class="preview" ng-src="{{selectedItem.image}}" alt="">
+		</div>
+		<div class="col-sm-4 part infoproduk">
+			<h2 class="nama">{{selectedItem.nama}}</h2>
+			<div class="keterangan">{{selectedItem.keterangan}}</div>
+
+			<div class="stok">Stok: <span>{{selectedItem.stok}}</span></div>
+			<div class="ukuran">Ukuran : 
+				<select name="">
+					<option ng-repeat="uku in selectedItem.ukuran" value="uku">{{uku}}</option>
+				</select>
+			</div>
+
+			<button>
+				<span class="icon">
+					<i class="fa fa-cart-plus"></i>
+				</span>
+				<span class="text">
+					Tambahkan
+				</span>
+			</button>
+		</div>
+	</div>
+
+</div>
