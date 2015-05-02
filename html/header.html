@@ -4,13 +4,17 @@
 		<!-- <h1>SarimbIT</h1> -->
 
 		<div class="buttons" ng-show="user.isLogin()">
+			<button ng-click="changePath('/home')">
+				<span class="icon"><i class="fa fa-home"></i></span>
+				<span class="text">Home</span>
+			</button>
 			<button ng-click="changePath('/profile')">
 				<span class="icon"><i class="fa fa-user"></i></span>
 				<span class="text">Profile</span>
 			</button>
 			<button ng-click="changePath('/cart')">
 				<span class="icon"><i class="fa fa-shopping-cart"></i></span>
-				<span class="text"></span>
+				<span class="text">{{keranjang.length}}</span>
 			</button>
 			<button ng-click="logoutUser()">
 				<span class="icon"><i class="fa fa-sign-out"></i></span>

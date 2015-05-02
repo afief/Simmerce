@@ -30,9 +30,22 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+
 		when('/profile', {
 			templateUrl: 'html/profile.html',
 			controller: 'ProfileController',
+			headerShow: true,
+			authenticate: true
+		}).
+		when('/model', {
+			templateUrl: 'html/model.html',
+			controller: 'ModelController',
+			headerShow: true,
+			authenticate: true
+		}).
+		when('/kostum/:parent', {
+			templateUrl: 'html/kostumisasi.html',
+			controller: 'KostumisasiController',
 			headerShow: true,
 			authenticate: true
 		}).
@@ -108,31 +121,85 @@ pageModule.run(["$rootScope", "user", "$location", 'loadingSrv', function($root,
 
 	$root.user = user;
 	$root.loadingSrv = loadingSrv;
+	$root.numberWithCommas = numberWithCommas;
+	$root.parseInt = parseInt;
+
+
+	$root.keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
 }
 ]);
 
 pageModule.controller('IndexController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
-	// $root.loadingSrv.show(); 
-	// user.cek().then(function() {
-	// 	$location.path("/home");
-	// 	$root.loadingSrv.hide();
-	// }, function() {
-	// 	$root.loadingSrv.hide();
-	// });
-
 }]);
 
-pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, location){
+pageModule.controller('ModelController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+	$root.loadingSrv.show();
+	$scope.modelData = [];
+	user.getBatiks(-1).then(function(res) {
+		if (res.status) {
+			lgi(res.data);
+			$scope.modelData = res.data;
+		} else {
+			alert("Data batik kosong");
+		}
+		$root.loadingSrv.hide();
+	}, function() {
+		$root.loadingSrv.hide();
+		alert("Gagal mengambil data batik");
+	});
+}])
+
+pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', '$location', '$routeParams', function($scope, $root, user, $location, $routeParams){
+
+	$scope.jumlahBeli = 0;
+	$root.loadingSrv.show();
+	$scope.modelData = [];
+	user.getBatiks($routeParams.parent).then(function(res) {
+		if (res.status) {
+			lgi(res.data);
+			$scope.modelData = res.data;
+			$scope.currentModel = res.data[0];
+		} else {
+			alert("Data batik kosong");
+		}
+		$root.loadingSrv.hide();
+	}, function() {
+		$root.loadingSrv.hide();
+		alert("Gagal mengambil data batik");
+	});
+
+	$scope.changeModel = function(model) {
+		$scope.currentModel = model;
+	}
+
+	$scope.buyItem = function(model) {
+		if ($scope.jumlahBeli > 0) {
+			$root.keranjang.push({
+				model: model,
+				jumlah: $scope.jumlahBeli,
+				status: "belum lunas"
+			});
+			localStorage.setItem('keranjang', JSON.stringify($root.keranjang)); 
+			lg($root.keranjang[$root.keranjang.length-1]);
+			$location.path("/cart");
+		} else {
+			alert("Jumlah Pembelian harus lebih dari 0");
+		}
+	}
+
+}]);
+pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
 
 }]);
-pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, location){
+pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
 
 }]);
 
 pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location) {
 
+	lg($root.keranjang);
 
 }]);

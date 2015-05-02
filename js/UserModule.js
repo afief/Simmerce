@@ -125,6 +125,17 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			catch(defer.reject);
 
 			return defer.promise;
+		},
+		getBatiks: function(parent) {
+			lg("getBatiks", parent.toString());
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "/batik/" + parent.toString()).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
 		}
 	}
 

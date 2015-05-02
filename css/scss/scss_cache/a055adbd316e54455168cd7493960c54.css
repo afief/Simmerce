@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Sat, 02 May 2015 06:03:29 +0200 (0.3681s) */
+/* compiled by scssphp v0.0.9 on Sat, 02 May 2015 14:06:07 +0200 (0.1583s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -77,9 +77,14 @@ header:after {
 body {
   background-color: #efefef; }
 
+.buttons {
+  display: table;
+  margin: 20px auto; }
+
 .container {
   margin: 20px auto;
   padding: 0px;
+  padding-bottom: 20px;
   width: 900px;
   background-color: #fff;
   box-shadow: 1px 1px 3px -2px #444; }
@@ -88,6 +93,8 @@ body {
     border-bottom: solid 1px #eee;
     font-size: x-large;
     padding: 15px; }
+  .container .wrapper {
+    padding: 10px 20px; }
   .container .koleksi .items {
     padding: 0px;
     margin: 0px;
@@ -133,6 +140,39 @@ body {
       font-weight: bold; }
     .container .infoproduk button {
       margin-top: 10px; }
+  .container .models .items {
+    padding: 10px; }
+    .container .models .items:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .container .models .items li {
+      width: 22%;
+      margin-right: 4%; }
+      .container .models .items li:last-child {
+        margin-right: 0px; }
+  .container .kostum .items {
+    padding: 0px; }
+    .container .kostum .items:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .container .kostum .items li {
+      width: 100%;
+      margin-right: 0px; }
+      .container .kostum .items li:last-child {
+        margin-right: 0px; }
+  .container .cart table th, .container .cart table td {
+    padding: 10px; }
+    .container .cart table th:nth-child(even), .container .cart table td:nth-child(even) {
+      background-color: #eee; }
+    .container .cart table th {
+      text-align: center;
+      background-color: #c5cae9; }
+    .container .cart table th:nth-child(even) {
+      background-color: #c5cae9; }
+    .container .cart table img {
+      width: 50px; }
 
 .loading {
   position: fixed;

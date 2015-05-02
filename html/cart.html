@@ -1,34 +1,51 @@
-<div class="page home">
+<div class="page cart">
 	
 	<div class="row container">
-		<h3 class="title">Checkout</h3>
+		<h3 class="title">Keranjang Belanja</h3>
 
-		<div class="col-sm-4 part">
-			<img class="preview" ng-src="{{selectedItem.image}}" alt="">
+		<div class="wrapper part cart">
+			<table>
+				<tr>
+					<th>&nbsp;</th>
+					<th>Nama</th>
+					<th>Jumlah Beli</th>
+					<th>Harga Pasang Dewasa</th>
+					<th>Harga Pasang Anak</th>
+					<th>Total Harga</th>
+					<th>Status</th>
+				</tr>
+				<tr ng-repeat="item in keranjang track by $index">
+					<td>
+						<img ng-src="{{item.model.image}}" alt="">
+					</td>
+					<td>{{item.model.nama}}</td>
+					<td>{{item.jumlah}}</td>
+					<td>{{numberWithCommas(item.model.harga_dewasa*2)}}</td>
+					<td>{{numberWithCommas(item.model.harga_anak*2)}}</td>
+					<td>{{numberWithCommas(item.jumlah * (parseInt(item.model.harga_dewasa)*2 + parseInt(item.model.harga_anak)*2))}}</td>
+					<td>{{item.status}}</td>
+				</tr>
+			</table>
 		</div>
-		<div class="col-sm-4 part infoproduk">
-			<h2 class="nama">{{selectedItem.nama}}</h2>
-			<div class="keterangan">{{selectedItem.keterangan}}</div>
 
-			<div class="stok">Harga : <span>Rp {{numberWithCommas(selectedItem.harga)}},-</span></div>
-			<div class="ukuran">Ukuran : 
-				<select name="">
-					<option ng-repeat="uku in selectedItem.ukuran" value="uku">{{uku}}</option>
-				</select>
-			</div>
-			<div class="jumlah stok">
-				Jumlah : 
-				<input type="number" style="width: 100px" ng-model="purchaseItem.jumlah"> buah 
-			</div>
-			<div class="total stok">
-				Harga Total : <span>{{numberWithCommas(hargaTotal)}}</span>
+		<h3 class="title" style="margin-top: 20px;">Metode Pembayaran</h3>
+		<div class="part infoproduk">
+		<div class="wrapper">
+			Pembayaran bisa dilakukan melalui salah satu nomor rekening berikut
+			<ul>
+				<li>
+					BCA : ... ...
+				</li>
+				<li>
+					Mandiri : ... ...
+				</li>
+			</ul>
+			Konfimasi pembayaran melalui SMS 081224464749
 			</div>
 		</div>
 
-		<div class="col-sm-4 part infoproduk">
-			
-
-			<h2 class="nama">Pengiriman</h2>
+		<h3 class="title">Pengiriman</h3>
+		<div class="part infoproduk">
 			<a href="http://www.lazada.co.id/shipping/" class="wrapper__shipping">
 				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/lex2.jpg" alt="">
 				<img src="http://srv-live-01.lazada.co.id/cms/logo/themes_2014/53x39_JNE.jpg" alt="">

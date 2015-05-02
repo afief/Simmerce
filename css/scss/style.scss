@@ -5,9 +5,14 @@
 body {
 	background-color: #efefef;
 }
+.buttons {
+	display: table;
+	margin: 20px auto;
+}
 .container {
 	margin: 20px auto;
 	padding: 0px;
+	padding-bottom: 20px;
 	width: 900px;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 3px -2px #444444;
@@ -16,6 +21,9 @@ body {
 		border-bottom: solid 1px $color_grey5;
 		font-size: x-large;
 		padding: 15px;
+	}
+	.wrapper {
+		padding: 10px 20px;
 	}
 	
 	.koleksi {
@@ -76,6 +84,52 @@ body {
 		}
 		button {
 			margin-top: 10px;
+		}
+	}
+	.models {
+		.items {
+			padding: 10px;
+			@include clearfix;
+			li {
+				width: 22%;
+				margin-right: 4%;
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+	.kostum {
+		.items {
+			padding: 0px;
+			@include clearfix;
+			li {
+				width: 100%;
+				margin-right: 0px;
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+	.cart {
+		table {
+			th, td {
+				padding: 10px;
+				&:nth-child(even) {
+					background-color: $color_grey5;
+				}
+			}
+			th {
+				text-align: center;
+				background-color: $color_primary1;
+				&:nth-child(even) {
+					background-color: $color_primary1;
+				}
+			}
+			img {
+				width: 50px;
+			}
 		}
 	}
 }
