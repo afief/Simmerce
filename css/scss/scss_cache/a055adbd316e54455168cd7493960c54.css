@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Fri, 01 May 2015 11:55:16 +0200 (0.0253s) */
+/* compiled by scssphp v0.0.9 on Sat, 02 May 2015 06:03:29 +0200 (0.3681s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -10,14 +10,22 @@
   font-weight: 400;
   src: url("../../fonts/Roboto-Light.ttf"); }
 
+h1 {
+  font-family: "Roboto"; }
+
 h2 {
+  font-family: "Roboto";
   text-align: center;
   color: #333; }
 
 h3, h4 {
+  font-family: "Roboto";
   margin: 0px;
   color: #333;
   padding: 0px; }
+
+div {
+  font-family: "Roboto"; }
 
 form input {
   width: 90%;
@@ -28,29 +36,43 @@ form input {
   outline: none;
   box-shadow: 1px 1px 3px -1px #333; }
   form button {
-    padding: 10px 15px;
-    border: solid 1px #303f9f;
-    background-color: #3f51b5;
-    box-shadow: 1px 1px 3px -1px #333;
-    color: #fff;
-    margin: 5px 0px;
-    cursor: pointer; }
-    form button:hover {
-      background-color: #c5cae9;
-      color: #000; }
+    margin-top: 5px; }
 
 img {
   max-width: 100%; }
 
 button {
-  background-color: #3f51b5;
+  outline: none;
+  background-color: #303f9f;
   color: white;
-  border: solid 1px #303f9f;
-  padding: 5px 0px; }
+  border: solid 1px #3f51b5;
+  box-shadow: 1px 1px 3px -1px #333; }
+  button:after {
+    content: "";
+    display: table;
+    clear: both; }
   button .icon {
-    padding: 10px; }
+    display: block;
+    float: left;
+    padding: 5px; }
   button .text {
-    padding: 10px; }
+    display: block;
+    float: left;
+    padding: 5px; }
+
+header:after {
+  content: "";
+  display: table;
+  clear: both; }
+  header .buttons {
+    float: right; }
+    header .buttons button {
+      background-color: transparent;
+      box-shadow: none;
+      color: #333;
+      border: none; }
+      header .buttons button:hover {
+        color: #3f51b5; }
 
 body {
   background-color: #efefef; }
@@ -58,7 +80,7 @@ body {
 .container {
   margin: 20px auto;
   padding: 0px;
-  max-width: 900px;
+  width: 900px;
   background-color: #fff;
   box-shadow: 1px 1px 3px -2px #444; }
   .container h3.title {
@@ -66,11 +88,6 @@ body {
     border-bottom: solid 1px #eee;
     font-size: x-large;
     padding: 15px; }
-  .container .part {
-    padding-top: 15px;
-    padding-bottom: 15px; }
-  .container .preview {
-    width: 100%; }
   .container .koleksi .items {
     padding: 0px;
     margin: 0px;
@@ -116,3 +133,20 @@ body {
       font-weight: bold; }
     .container .infoproduk button {
       margin-top: 10px; }
+
+.loading {
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px; }
+  .loading .wrapper .text {
+    font-size: small;
+    position: absolute;
+    left: 40%;
+    left: calc(50% - 20px);
+    top: 30%;
+    top: calc(50% - 10px);
+    font-weight: bold; }

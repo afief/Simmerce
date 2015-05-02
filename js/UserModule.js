@@ -1,4 +1,6 @@
-var userModule = angular.module("UserModule", []);
+var userModule = angular.module("UserModule", [], ["$httpProvider", function($httpProvider) {
+		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+	}]);
 
 userModule.factory("user", ["$http","$q", function($http, $q) {
 
@@ -61,7 +63,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 				if (data.status) {
 					defer.resolve(true);
 				} else {
-					defer.reject(false);
+					defer.reject(data.message);
 				}
 			}).
 			catch(function(err) {
@@ -71,7 +73,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			return defer.promise;
 		},
 		cek: function() {
-			console.log("key", key);
+			lgi("cek", key);
 			var defer = $q.defer();
 			var ini = this;
 			
@@ -80,6 +82,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 			$http.post(apiUrl + "user", serialize({key: key})).
 			success(function(data, status) {
+				lgi("cek", data.status);
 				if (data.status) {
 					isLogin = true;
 					ini.profile = data.data;
@@ -127,12 +130,12 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 }]);
 
-// userModule.run(["user", function(user) {
-// 	user.cek();
-// }]);
-// userModule.run(["$http", "user", function($http, user) {
-// 	$http.defaults.headers.common.key = user.getKey();
-// }]);
+userModule.run(["user", function(user) {
+	user.cek();
+}]);
+userModule.run(["$http", "user", function($http, user) {
+	$http.defaults.headers.common.key = user.getKey();
+}]);
 
 userModule.factory("connectivity", function() {
 	return {

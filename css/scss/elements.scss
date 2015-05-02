@@ -1,14 +1,19 @@
+h1 {
+	font-family: "Roboto";
+}
 h2 {
-	
+	font-family: "Roboto";
 	text-align: center;
 	color: $color_grey;
 }
 h3, h4 {
+	font-family: "Roboto";
 	margin: 0px;
 	color: $color_grey;
 	padding: 0px;
 }
 div {
+	font-family: "Roboto";
 }
 form {
 	input {
@@ -19,20 +24,9 @@ form {
 		margin: 5px 0px;
 		outline: none;
 		box-shadow: 1px 1px 3px -1px $color_grey;
-		
 	}
 	button {
-		padding: 10px 15px;
-		border: solid 1px $color_primary3;
-		background-color: $color_primary2;
-		box-shadow: 1px 1px 3px -1px $color_grey;
-		color: $color_white;
-		margin: 5px 0px;
-		cursor: pointer;
-		&:hover {
-			background-color: $color_primary1;
-			color: $color_black;
-		}
+		margin-top: 5px;
 	}
 }
 img {
@@ -40,14 +34,18 @@ img {
 }
 
 button {
-	background-color: $color_primary2;
+	outline: none;
+	background-color: $color_primary3;
 	color: white;
-	border: solid 1px $color_primary3;
-	padding: 5px 0px;
+	border: solid 1px $color_primary2;
+	box-shadow: 1px 1px 3px -1px $color_grey;
+	@include clearfix;
 	.icon {
-		padding: 10px;
+		display: block; float: left;
+		padding: 5px;
 	}
 	.text {
-		padding: 10px;
+		display: block; float: left;
+		padding: 5px;
 	}
 }

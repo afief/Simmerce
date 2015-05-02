@@ -1,0 +1,28 @@
+<div class="page home">
+	<div class="row container">
+		
+		<div class="col-sm-8">
+			<h1>SarimbIT</h1>
+		</div>
+		<div class="col-sm-4 register">
+			<h3 class="title">Register</h3>
+			<form ng-submit="registerSubmit()">
+				<input type="text" placeholder="username" ng-model="registerData.username">
+				<input type="email" placeholder="email" ng-model="registerData.email">
+				<input type="text" placeholder="password" ng-model="registerData.password">
+				<input type="text" placeholder="password2" ng-model="registerData.password2">
+
+				<button>
+					<span class="icon">
+						<i class="fa fa-user-plus"></i>
+					</span>
+					<span class="text">Register</span>
+				</button>
+				<br>
+				<br>
+				<span>Sudah punya akun? <a href="#/login">Login</a></span>
+			</form>
+		</div>
+
+	</div>
+</div>

@@ -4,14 +4,33 @@ pageModule.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {
+			templateUrl: 'html/index.html',
+			controller: 'IndexController',
+			headerShow: true,
+			authenticate: false
+		}).
+		when('/login', {
+			templateUrl: 'html/login.html',
+			headerShow: false,
+			authenticate: false
+		}).
+		when('/home', {
 			templateUrl: 'html/home.html',
 			controller: 'HomeController',
-			authenticate: false
+			headerShow: true,
+			authenticate: true
+		}).
+		when('/profile', {
+			templateUrl: 'html/profile.html',
+			controller: 'ProfileController',
+			headerShow: true,
+			authenticate: true
 		}).
 		when('/cart', {
 			templateUrl: 'html/cart.html',
 			controller: "CartController",
-			authenticate: false
+			headerShow: true,
+			authenticate: true
 		}).
 		otherwise({
 			redirectTo: '/'
@@ -19,47 +38,91 @@ pageModule.config(['$routeProvider',
 	}
 	]);
 
-pageModule.run(["$rootScope", function($root) {
-	$root.purchaseItem = {}
+pageModule.directive('loadingDir', function(){
+	return {
+		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		replace: true,
+		templateUrl: 'html/loading.html',
+		controller: ["$scope", function($scope) {
+		}]
+	};
+});
+pageModule.service("loadingSrv", function() {
+	this.isShow = false;
+	this.show = function() {
+		this.isShow = true;
+	}
+	this.hide = function() {
+		this.isShow = false;
+	}
+});
+
+
+pageModule.run(["$rootScope", "user", "$location", 'loadingSrv', function($root, user, $location, loadingSrv) {
+	$root.registerData = {};
+	$root.registerSubmit = function() {
+		$root.loadingSrv.show();
+		user.register($root.registerData).then(function() {
+			$root.loginData = $root.registerData;
+			$root.loginSubmit();
+			$root.loadingSrv.hide();
+		}, function(err) {
+			$root.loadingSrv.hide();
+			alert("Register Failed " + err);
+		});
+	}
+
+	$root.loginData = {};
+	$root.loginSubmit = function() {
+		$root.loadingSrv.show();
+		user.login($root.loginData).then(function(key) {
+			$location.path("/home");
+			$root.loadingSrv.hide();
+		}, function(err) {
+			$root.loadingSrv.hide();
+			alert("Login Failed " + err);
+		});
+	}
+	$root.changePath = function(path) {
+		lgi("changepath", path);
+		$location.path(path);
+	}
+
+	$root.logoutUser = function() {
+		$root.loadingSrv.show();
+		user.logout().then(function() {
+			$location.path("/");
+			$root.loadingSrv.hide();
+		});
+	}
+
+	$root.user = user;
+	$root.loadingSrv = loadingSrv;
 }
 ]);
 
+pageModule.controller('IndexController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+
+	// $root.loadingSrv.show(); 
+	// user.cek().then(function() {
+	// 	$location.path("/home");
+	// 	$root.loadingSrv.hide();
+	// }, function() {
+	// 	$root.loadingSrv.hide();
+	// });
+
+}]);
+
+pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, location){
+
+
+}]);
 pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, location){
 
-	$scope.items = [];
-	$scope.selectedItem = {};
-	user.getData().then(function(res) {
-		console.info(res);
-		if (res.status) {
-			$scope.items = res.data;
-			$scope.selectedItem = $scope.items[0];
-		}
-	});
-	$scope.thumbClick = function(item) {
-		$scope.selectedItem = item;
-	}
-
-	$root.purchaseItem = {};
-	$scope.buyItem = function(selectedItem) {
-		console.log(selectedItem);
-		$root.purchaseItem.item = selectedItem;
-		location.path("/cart");
-	}
-
-	$scope.numberWithCommas = numberWithCommas;
 
 }]);
 
 pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location) {
-	console.log($root.purchaseItem.item);
-	if ($root.purchaseItem.item) {
-		$scope.hargaTotal = $root.purchaseItem.jumlah * $root.purchaseItem.item.harga;
-		console.log($root.purchaseItem.item.jumlah, $root.purchaseItem.item.harga);
-	} else {
-		$location.path("/");
-	}
 
-	$scope.selectedItem = $root.purchaseItem.item;
-	$scope.numberWithCommas = numberWithCommas;
 
 }]);

@@ -1,5 +1,6 @@
 @import "configure";
 @import "elements";
+@import "header";
 
 body {
 	background-color: #efefef;
@@ -7,7 +8,7 @@ body {
 .container {
 	margin: 20px auto;
 	padding: 0px;
-	max-width: 900px;
+	width: 900px;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 3px -2px #444444;
 	h3.title {
@@ -15,13 +16,6 @@ body {
 		border-bottom: solid 1px $color_grey5;
 		font-size: x-large;
 		padding: 15px;
-	}
-	.part {
-		padding-top: 15px;
-		padding-bottom: 15px;
-	}
-	.preview {
-		width: 100%;
 	}
 	
 	.koleksi {
@@ -82,6 +76,27 @@ body {
 		}
 		button {
 			margin-top: 10px;
+		}
+	}
+}
+
+.loading {
+	position: fixed;
+	z-index: 100;
+	background-color: rgba(255,255,255,0.8);
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	.wrapper {
+		.text {
+			font-size: small;
+			position: absolute;
+			left: 40%;
+			left: calc(50% - 20px);
+			top: 30%;
+			top: calc(50% - 10px);
+			font-weight: bold;
 		}
 	}
 }
