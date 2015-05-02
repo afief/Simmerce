@@ -78,7 +78,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var ini = this;
 			
 			if (key == "")
-				return $q.reject("no_key");
+				return $q.when({status: false});
 
 			$http.post(apiUrl + "user", serialize({key: key})).
 			success(function(data, status) {
@@ -86,9 +86,9 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 				if (data.status) {
 					isLogin = true;
 					ini.profile = data.data;
-					defer.resolve(data.data);
+					defer.resolve(data);
 				} else {
-					defer.reject(data.message);
+					defer.resolve(data);
 				}
 			}).
 			catch(function(err) {

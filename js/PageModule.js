@@ -7,12 +7,22 @@ pageModule.config(['$routeProvider',
 			templateUrl: 'html/index.html',
 			controller: 'IndexController',
 			headerShow: true,
-			authenticate: false
+			authenticate: false,
+			resolve: {
+				authenticated: ["user", '$q', function(user, $q) {
+					return user.cek();
+				}]
+			}
 		}).
 		when('/login', {
 			templateUrl: 'html/login.html',
 			headerShow: false,
-			authenticate: false
+			authenticate: false,
+			resolve: {
+				authenticated: ["user", '$q', function(user, $q) {
+					return user.cek();
+				}]
+			}
 		}).
 		when('/home', {
 			templateUrl: 'html/home.html',

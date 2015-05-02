@@ -29,14 +29,20 @@ var apiUrl = "api/";
 				e.preventDefault();
 				user.cek().then(function(res) {
 
-					if (prev && (curr.$$route.originalPath != prev.$$route.originalPath))
-						$location.path(curr.$$route.originalPath);
-					else
-						$route.reload();
+					if (res.status) {
+						if (prev && (curr.$$route.originalPath != prev.$$route.originalPath))
+							$location.path(curr.$$route.originalPath);
+						else
+							$route.reload();
 
-					loadingSrv.isShow = false;
+						loadingSrv.isShow = false;
+					} else  {
+						$location.path("/");
+						loadingSrv.isShow = false;
+					}
+
+
 				}, function() {
-					lg("masuk");
 					$location.path("/login");
 					loadingSrv.isShow = false;
 				});
@@ -50,16 +56,24 @@ var apiUrl = "api/";
 		$root.$on('$routeChangeSuccess', function(e, curr, prev) {
 			//lg("change route end", e);
 
-			$root.headerShow = curr.$$route.headerShow;
+			if (curr.$$route.originalPath == "") {
+				lg("path zero");
+				$location.path("/");
+				$route.reload();
+				e.preventDefault();
+				return;
+			}
+			lgi(curr.$$route.originalPath, user.isLogin());
 
-			if (((curr.$$route.originalPath == "/login") || (curr.$$route.originalPath == "/register"))&& user.isLogin()) {
+			$root.headerShow = curr.$$route.headerShow;
+			if (((curr.$$route.originalPath == "/login") || (curr.$$route.originalPath == "/register") || (curr.$$route.originalPath == "/") || (curr.$$route.originalPath == "")) && user.isLogin()) {
 
 				if (prev && prev.$$route && (prev.$$route.originalPath != curr.$$route.originalPath)) {
 					lg(prev.$$route.originalPath);
 					$location.path(prev.$$route.originalPath);
 				}
 				else {
-					$location.path("/");
+					$location.path("/home");
 				}
 			}
 
