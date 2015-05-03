@@ -43,6 +43,12 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/editor', {
+			templateUrl: 'html/editor.html',
+			controller: 'EditController',
+			headerShow: true,
+			authenticate: true
+		}).
 		when('/kostum/:parent', {
 			templateUrl: 'html/kostumisasi.html',
 			controller: 'KostumisasiController',
@@ -134,20 +140,20 @@ pageModule.controller('IndexController', ['$scope', '$rootScope', 'user', '$loca
 }]);
 
 pageModule.controller('ModelController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
-	$root.loadingSrv.show();
-	$scope.modelData = [];
-	user.getBatiks(-1).then(function(res) {
-		if (res.status) {
-			lgi(res.data);
-			$scope.modelData = res.data;
-		} else {
-			alert("Data batik kosong");
-		}
-		$root.loadingSrv.hide();
-	}, function() {
-		$root.loadingSrv.hide();
-		alert("Gagal mengambil data batik");
-	});
+	// $root.loadingSrv.show();
+	// $scope.modelData = [];
+	// user.getBatiks(-1).then(function(res) {
+	// 	if (res.status) {
+	// 		lgi(res.data);
+	// 		$scope.modelData = res.data;
+	// 	} else {
+	// 		alert("Data batik kosong");
+	// 	}
+	// 	$root.loadingSrv.hide();
+	// }, function() {
+	// 	$root.loadingSrv.hide();
+	// 	alert("Gagal mengambil data batik");
+	// });
 }])
 
 pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', '$location', '$routeParams', function($scope, $root, user, $location, $routeParams){
@@ -189,6 +195,13 @@ pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', 
 	}
 
 }]);
+
+pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+	$scope.buyItem = function() {
+		$location.path("/cart");
+	}
+}]);
+
 pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
 

@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Sat, 02 May 2015 14:06:07 +0200 (0.1583s) */
+/* compiled by scssphp v0.0.9 on Sun, 03 May 2015 05:28:51 +0200 (0.7197s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -64,8 +64,11 @@ header:after {
   content: "";
   display: table;
   clear: both; }
+  header.container {
+    padding-bottom: 0px; }
   header .buttons {
-    float: right; }
+    float: right;
+    margin: 0px; }
     header .buttons button {
       background-color: transparent;
       box-shadow: none;
@@ -93,6 +96,9 @@ body {
     border-bottom: solid 1px #eee;
     font-size: x-large;
     padding: 15px; }
+  .container .infokecil {
+    font-size: small;
+    text-align: center; }
   .container .wrapper {
     padding: 10px 20px; }
   .container .koleksi .items {
@@ -173,6 +179,9 @@ body {
       background-color: #c5cae9; }
     .container .cart table img {
       width: 50px; }
+  .container .flash {
+    display: table;
+    margin: 0px auto; }
 
 .loading {
   position: fixed;

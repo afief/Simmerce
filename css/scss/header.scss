@@ -1,7 +1,11 @@
 header {
 	@include clearfix;
+	&.container {
+		padding-bottom: 0px;
+	}
 	.buttons {
 		float: right;
+		margin: 0px;
 		button {
 			background-color: transparent;
 			box-shadow: none;
