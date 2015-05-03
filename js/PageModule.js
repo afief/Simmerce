@@ -73,6 +73,11 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/sk', {
+			templateUrl: 'html/sk.html',
+			headerShow: true,
+			authenticate: false
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
@@ -341,6 +346,16 @@ pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$loc
 
 pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
+	$scope.profile = user.profile;
+	$scope.simpanProfil = function() {
+		$root.loadingSrv.show();
+		user.updateProfil($scope.profile).then(function(res) {
+			$root.loadingSrv.hide();
+		}, function() {
+			$root.loadingSrv.hide();
+			alert("Simpan profil gagal");
+		});
+	}
 
 }]);
 pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){

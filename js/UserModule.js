@@ -115,6 +115,16 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 			return defer.promise;
 		},
+		updateProfil: function(profil) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "updateprofile", serialize(profil)).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
 
 		getData: function() {
 			var defer = $q.defer();

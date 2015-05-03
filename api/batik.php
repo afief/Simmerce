@@ -32,6 +32,22 @@ $app->get("/pesanan", function() {
 	echo json_encode($result);
 });
 
+$app->post("/updateprofile", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$id_user = getUserIdByKey(getHeaders("key"));
+	$data = getPosts();
+	$update = $db->update("me_users", $data, ["id" => $id_user]);
+	if ($update) {
+		$result->status = true;
+	}
+
+	echo json_encode($result);
+});
+
 $app->post("/pesan", function() {
 	global $db;
 
@@ -50,6 +66,7 @@ $app->post("/pesan", function() {
 	
 	$baris = $db->insert("tik_pesanan", [
 			"id_user" => $id_user,
+			"ref" => makeUniqueId(5),
 			"pesanan" => $data["pesanan"],
 			"jumlah" => $data["jumlah"],
 			"alamat" => $data["alamat"],

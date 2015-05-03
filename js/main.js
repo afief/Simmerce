@@ -12,7 +12,7 @@ var baseUrl = "";
 var apiUrl = "api/";
 (function() {
 
-	var batikOL = angular.module("BatikOL", ["ngRoute", "PageModule", "HeaderModule", "UserModule"]);
+	var batikOL = angular.module("BatikOL", ["ngRoute", "PageModule", "HeaderModule", "UserModule", "angular-carousel"]);
 
 	batikOL.run(['$rootScope', '$location', 'user', '$route', 'loadingSrv', function($root, $location, user, $route, loadingSrv) {
 		$root.$on('$routeChangeStart', function(e, curr, prev) {

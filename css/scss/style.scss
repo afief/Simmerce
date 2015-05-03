@@ -4,6 +4,7 @@
 
 body {
 	background-color: #efefef;
+	background-image: url($baseUrl + "uploads/bg.png");
 }
 .buttons {
 	display: table;
@@ -16,6 +17,7 @@ body {
 	width: 900px;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 3px -2px #444444;
+	@include gradientgrey;
 	h1 {
 		margin-bottom: 15px;
 		border-bottom: solid 1px #666;
@@ -99,9 +101,11 @@ body {
 	.models {
 		.items {
 			padding: 10px;
+			margin: 0px auto;
+			display: table;
 			@include clearfix;
 			li {
-				width: 22%;
+				width: 185px;
 				margin-right: 4%;
 				&:last-child {
 					margin-right: 0px;
@@ -139,7 +143,7 @@ body {
 				}
 			}
 			img {
-				width: 250px;
+				width: 150px;
 			}
 		}
 	}
@@ -173,6 +177,80 @@ body {
 					}
 				}
 			}
+		}
+	}
+
+	.carousel {
+		ul {
+			height: 300px;
+		}
+	}
+
+	&.sponsors {
+		padding: 0px;
+		.wrapper {
+			display: table;
+			margin: 0px auto;
+		}
+		.title {
+			color: $color_grey4;
+			display: inline-block;
+		}
+		img {
+			margin: 0px 10px;
+			height: 50px;
+		}
+	}
+
+	&.pengantar {
+		text-align: center;
+		padding: 20px;
+		h4 {
+			font-weight: bold;
+		}
+		img {
+			height: 100px;
+		}
+		.infoproduk {
+			max-width: 700px;
+			display: table;
+			margin: 0px auto;
+			margin-top: 20px;
+		}
+	}
+	&.profile {
+		table {
+			margin: 20px auto;
+			min-width: 500px;
+			tr {
+				td {
+					font-size: medium;
+					padding: 10px;
+					vertical-align: top;
+					input, textarea {
+						outline: none;
+						border: none;
+						background-color: transparent;
+						border-bottom: solid 1px $color_grey3;
+						&:focus, &:active {
+							padding: 7px 10px;
+							border: solid 1px $color_grey3;
+							box-shadow: 1px 1px 3px -1px #666;
+						}
+					}
+					&:last-child {
+						display: inline-block;
+						&:before {
+							vertical-align: top;
+							content: ":  ";
+						}
+					}
+				}
+			}
+		}
+		button {
+			display: table;
+			margin: 0px auto;
 		}
 	}
 }

@@ -2,6 +2,13 @@ header {
 	@include clearfix;
 	&.container {
 		padding-bottom: 0px;
+		h1 {
+			font-size: medium;
+			border-bottom: none;
+			margin: 0px;
+			padding: 10px 20px;
+			display: inline-block;
+		}
 	}
 	.buttons {
 		float: right;

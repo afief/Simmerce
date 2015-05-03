@@ -1,0 +1,37 @@
+<div class="page">
+	<div class="row container profile">
+		
+		<table>
+			<tr>
+				<td>Nama Lengkap</td>
+				<td><input type="text" ng-model="profile.nama"></td>
+			</tr>
+			<tr>
+				<td>Username</td>
+				<td>{{profile.username}}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" ng-model="profile.email"></td>
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td><textarea ng-model="profile.alamat" rows="10"></textarea></td>
+			</tr>
+			<tr>
+				<td>Kota</td>
+				<td><input type="text" ng-model="profile.kota"></td>
+			</tr>
+			<tr>
+				<td>Testimoni</td>
+				<td><textarea ng-model="profile.testimoni" rows="10"></textarea></td>
+			</tr>
+		</table>
+
+		<button ng-click="simpanProfil()">
+			<span class="icon"><i class="fa fa-floppy-o"></i></span>
+			<span class="text">Simpan</span>
+		</button>
+
+	</div>
+</div>

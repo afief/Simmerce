@@ -169,6 +169,7 @@ $app->get("/email/:email", function($email) {
 	echo json_encode($result);
 });
 
+
 include "batik.php";
 
 //route functions
