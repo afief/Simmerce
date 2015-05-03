@@ -19,6 +19,7 @@
 		var cewe2:MovieClip;
 		
 		public var dats:Object = new Object();
+		public var enable:Boolean = true;
 		
 		public function main() {
 			// constructor code
@@ -28,6 +29,9 @@
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			ExternalInterface.addCallback("gantiDesain", gantiDesain);
+			ExternalInterface.addCallback("SetActive", SetActive);
+			
+			ExternalInterface.call("flashEnabled", "");
 			
 			pilihDesain = mc_pilihDesain;
 			pilihDesain.visible = false;
@@ -75,8 +79,10 @@
 			
 		}
 		private function desainPilih(mc:MovieClip) {
-			pilihDesain.visible = true;
-			aktif = mc;
+			if (enable) {
+				pilihDesain.visible = true;
+				aktif = mc;
+			}
 		}
 		private function desainDipilih(no:Number) {
 			dats[aktif.name] = no;
@@ -88,6 +94,9 @@
 				this[k].gotoAndStop(_dats[k]);
 			}
 			ExternalInterface.call("desainDipilih", _dats);
+		}
+		public function SetActive(stat:Boolean) {
+			enable = stat;
 		}
 	}
 	

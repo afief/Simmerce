@@ -92,3 +92,8 @@ function desainDipilih(data) {
 	window.dats = data;
 	window.dispatchEvent(new Event("desainDipilih"));
 }
+
+function flashEnabled(d) {
+	lgi("flash enabled");
+	window.dispatchEvent(new Event("flashEnabled"));
+}

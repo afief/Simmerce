@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Sun, 03 May 2015 05:28:51 +0200 (0.7197s) */
+/* compiled by scssphp v0.0.9 on Sun, 03 May 2015 08:47:39 +0200 (0.6109s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -181,7 +181,10 @@ body {
       width: 50px; }
   .container .flash {
     display: table;
-    margin: 0px auto; }
+    margin: 0px auto;
+    width: 100%; }
+    .container .flash object {
+      max-width: 100%; }
 
 .loading {
   position: fixed;

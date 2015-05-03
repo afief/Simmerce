@@ -49,6 +49,12 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/order', {
+			templateUrl: 'html/order.html',
+			controller: 'OrderController',
+			headerShow: true,
+			authenticate: true
+		}).
 		when('/kostum/:parent', {
 			templateUrl: 'html/kostumisasi.html',
 			controller: 'KostumisasiController',
@@ -198,10 +204,37 @@ pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', 
 
 pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 	$scope.buyItem = function() {
-		$location.path("/cart");
+		window.dats = {};
+		$location.path("/order");
+	}
+
+	$root.pilihan = {};
+
+	window.removeEventListener("desainDipilih", updateDesain);
+	window.addEventListener("desainDipilih", updateDesain);
+	function updateDesain() {
+		$root.pilihan = window.dats;
+		lg(window.dats);
 	}
 }]);
 
+pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+
+	if ($root.pilihan) {
+		window.removeEventListener("flashEnabled", flashLoaded);
+		window.addEventListener("flashEnabled", flashLoaded);
+	} else {
+		$location.path("/model");
+	}
+
+	function flashLoaded() {
+		try {
+			window["main"].gantiDesain($root.pilihan); 
+		} catch(er) {}
+		try { window["main2"].gantiDesain($root.pilihan); } catch(er) {}
+	}
+
+}]);
 pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
 
