@@ -91,6 +91,33 @@ pageModule.service("loadingSrv", function() {
 		this.isShow = false;
 	}
 });
+pageModule.service("pesanan", function() {
+	this.pilihan = {};
+	this.jumlah = {};
+	this.alamat = "";
+	this.kota = "";
+	this.status = "belum lunas";
+	this.sudahDesain = false;
+	this.image64 = "";
+	this.reset = function() {
+		this.sudahDesain = false;
+		this.pilihan = {};
+		this.jumlah = {};
+		this.alamat = "";
+		this.kota = "";
+		this.image64 = "";
+		this.status = "belum lunas";
+	}
+	this.compile = function() {
+		return {
+			pesanan: JSON.stringify(this.pilihan),
+			jumlah : JSON.stringify(this.jumlah),
+			alamat : this.alamat,
+			kota : this.kota,
+			status : this.status
+		}
+	}
+});
 
 
 pageModule.run(["$rootScope", "user", "$location", 'loadingSrv', function($root, user, $location, loadingSrv) {
@@ -163,75 +190,86 @@ pageModule.controller('ModelController', ['$scope', '$rootScope', 'user', '$loca
 }])
 
 pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', '$location', '$routeParams', function($scope, $root, user, $location, $routeParams){
+	// $scope.jumlahBeli = 0;
+	// $root.loadingSrv.show();
+	// $scope.modelData = [];
+	// user.getBatiks($routeParams.parent).then(function(res) {
+	// 	if (res.status) {
+	// 		lgi(res.data);
+	// 		$scope.modelData = res.data;
+	// 		$scope.currentModel = res.data[0];
+	// 	} else {
+	// 		alert("Data batik kosong");
+	// 	}
+	// 	$root.loadingSrv.hide();
+	// }, function() {
+	// 	$root.loadingSrv.hide();
+	// 	alert("Gagal mengambil data batik");
+	// });
 
-	$scope.jumlahBeli = 0;
-	$root.loadingSrv.show();
-	$scope.modelData = [];
-	user.getBatiks($routeParams.parent).then(function(res) {
-		if (res.status) {
-			lgi(res.data);
-			$scope.modelData = res.data;
-			$scope.currentModel = res.data[0];
-		} else {
-			alert("Data batik kosong");
-		}
-		$root.loadingSrv.hide();
-	}, function() {
-		$root.loadingSrv.hide();
-		alert("Gagal mengambil data batik");
-	});
+	// $scope.changeModel = function(model) {
+	// 	$scope.currentModel = model;
+	// }
 
-	$scope.changeModel = function(model) {
-		$scope.currentModel = model;
-	}
-
-	$scope.buyItem = function(model) {
-		if ($scope.jumlahBeli > 0) {
-			$root.keranjang.push({
-				model: model,
-				jumlah: $scope.jumlahBeli,
-				status: "belum lunas"
-			});
-			localStorage.setItem('keranjang', JSON.stringify($root.keranjang)); 
-			lg($root.keranjang[$root.keranjang.length-1]);
-			$location.path("/cart");
-		} else {
-			alert("Jumlah Pembelian harus lebih dari 0");
-		}
-	}
-
+	// $scope.buyItem = function(model) {
+	// 	if ($scope.jumlahBeli > 0) {
+	// 		$root.keranjang.push({
+	// 			model: model,
+	// 			jumlah: $scope.jumlahBeli,
+	// 			status: "belum lunas"
+	// 		});
+	// 		localStorage.setItem('keranjang', JSON.stringify($root.keranjang)); 
+	// 		lg($root.keranjang[$root.keranjang.length-1]);
+	// 		$location.path("/cart");
+	// 	} else {
+	// 		alert("Jumlah Pembelian harus lebih dari 0");
+	// 	}
+	// }
 }]);
 
-pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', "$routeParams", function($scope, $root, user, $location, $routeParams){
+pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', "$routeParams", "pesanan",
+	function($scope, $root, user, $location, $routeParams, pesanan){
 	$scope.buyItem = function() {
+		var str = "";
+		try {
+			str = window["main"].GetBitmap();
+		} catch(er) {}
+		try {
+			str = window["main2"].GetBitmap();
+		} catch(er) {}
+		pesanan.image64 = str;
+
+		pesanan.sudahDesain = true;
 		window.dats = {};
 		$location.path("/order");
 	}
 
 	$root.swf = "model" + $routeParams.ke;
 	$root.modelke = $routeParams.ke;
-	$root.pilihan = {};
+	pesanan.reset();
 
 	window.removeEventListener("desainDipilih", updateDesain);
 	window.addEventListener("desainDipilih", updateDesain);
 	function updateDesain() {
-		$root.pilihan = window.dats;
+		pesanan.pilihan = window.dats;
 		lg(window.dats);
 	}
 }]);
 
-pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
-	
-	$root.swf = "model1";
-	$root.modelke = 1;
-	$root.pilihan = {};
+pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$location', "pesanan",
+	function($scope, $root, user, $location, pesanan){
+
+	if (!pesanan.sudahDesain) {
+		$location.path("/model");
+		return;
+	}
 
 	user.getData().then(function(res) {
 		if (res.status) {
 			lg(res.data);
 			$scope.currentModel = res.data[$root.modelke-1];
 
-			$scope.jumlah = {
+			pesanan.jumlah = {
 				ayah: 1, ibu: 1, laki: 1, perempuan: 1
 			}
 			$scope.harga = {
@@ -244,26 +282,34 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 	});
 	$scope.totalHarga = function() {
 		total = 0;
-		for (var k in $scope.jumlah) {
-			if ($scope.jumlah[k] < 0)
-				$scope.jumlah[k] = 0;
-			total += $scope.jumlah[k] * $scope.harga[k];
+		for (var k in pesanan.jumlah) {
+			if (pesanan.jumlah[k] < 0)
+				pesanan.jumlah[k] = 0;
+			pesanan.jumlah[k] = parseInt(pesanan.jumlah[k]);
+			total += pesanan.jumlah[k] * $scope.harga[k];
 		}
+		$scope.jumlah = pesanan.jumlah;
 		return total;
 	}
-	
-	if ($root.pilihan) {
-		window.removeEventListener("flashEnabled", flashLoaded);
-		window.addEventListener("flashEnabled", flashLoaded);
-	} else {
-		$location.path("/model");
+	$scope.buyItem = function() {
+		lgc();
+		lgi(pesanan.jumlah, pesanan.pilihan);
+
 	}
+	
+	window.removeEventListener("flashEnabled", flashLoaded);
+	window.addEventListener("flashEnabled", flashLoaded);
 
 	function flashLoaded() {
+		lgi(pesanan.pilihan);
 		try {
-			window["main"].gantiDesain($root.pilihan); 
+			window["main"].gantiDesain(pesanan.pilihan); 
+			//lge(window["main"].SetActive(false));
 		} catch(er) {}
-		try { window["main2"].gantiDesain($root.pilihan); } catch(er) {}
+		try {
+			window["main2"].gantiDesain(pesanan.pilihan);
+			//lge(window["main2"].SetActive(false));
+		} catch(er) {}
 	}
 
 }]);

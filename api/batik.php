@@ -15,3 +15,11 @@ $app->get("/batik/:parent", function($parent) {
 
 	echo json_encode($result);
 });
+
+$app->post("/pesan", function() {
+	global $db;
+
+	$id_user = getUserIdByKey(getHeaders("key"));
+	$data = getPosts();
+	
+});

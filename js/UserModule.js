@@ -136,6 +136,17 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			catch(defer.reject);
 
 			return defer.promise;
+		},
+		setPesanan: function(data) {
+			lgi("set pesanan", data);
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "/pesan", data).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
 		}
 	}
 

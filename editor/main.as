@@ -4,7 +4,9 @@
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.external.ExternalInterface;
-	
+	import flash.display.BitmapData;
+	import com.adobe.images.JPGEncoder;
+	import com.sociodox.utils.Base64;
 	
 	public class main extends MovieClip {
 		
@@ -30,6 +32,7 @@
 			
 			ExternalInterface.addCallback("gantiDesain", gantiDesain);
 			ExternalInterface.addCallback("SetActive", SetActive);
+			ExternalInterface.addCallback("GetBitmap", GetBitmap);
 			
 			ExternalInterface.call("flashEnabled", "");
 			
@@ -97,6 +100,16 @@
 		}
 		public function SetActive(stat:Boolean) {
 			enable = stat;
+			return stat;
+		}
+		public function GetBitmap():String {
+			var bitmapData:BitmapData = new BitmapData(stage.stageWidth, stage.stageHeight);
+			bitmapData.draw(stage);
+			
+			var jpg:JPGEncoder = new JPGEncoder(90);
+			var str:String = Base64.encode(jpg.encode(bitmapData));
+			//ExternalInterface.call("BitmapSet", str);
+			return str;
 		}
 	}
 	

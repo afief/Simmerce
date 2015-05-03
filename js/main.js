@@ -2,6 +2,7 @@ var lg = console.log.bind(console);
 var lgi = console.info.bind(console);
 var lge = console.error.bind(console);
 var lgw = console.warn.bind(console);
+var lgc = console.clear.bind(console);
 
 var __page = function(val) {
 	lg("%c" + val, "background-color:blue; padding: 2px 8px; color: white");
@@ -96,4 +97,9 @@ function desainDipilih(data) {
 function flashEnabled(d) {
 	lgi("flash enabled");
 	window.dispatchEvent(new Event("flashEnabled"));
+}
+
+function BitmapSet(d) {
+	window.image64 = d;
+	lgi(d);
 }
