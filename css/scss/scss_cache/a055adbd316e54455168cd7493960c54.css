@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Sun, 03 May 2015 08:47:39 +0200 (0.6109s) */
+/* compiled by scssphp v0.0.9 on Sun, 03 May 2015 13:24:38 +0200 (0.1797s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -185,6 +185,11 @@ body {
     width: 100%; }
     .container .flash object {
       max-width: 100%; }
+  .container .order table td, .container .order table th {
+    padding: 10px; }
+    .container .order table td input[type=text], .container .order table th input[type=text] {
+      width: 50px;
+      text-align: center; }
 
 .loading {
   position: fixed;

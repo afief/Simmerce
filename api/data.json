@@ -2,7 +2,10 @@
 	"status": true,
 	"data": [
 		{
-			
+			"nama" : "Blue Petal",
+			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar biru dan berbagai motif yang dapat dipilih dan dikombinasikan.",
+			"harga_dewasa" : 117500,
+			"harga_anak"   : 67500
 		}
 	]
 }

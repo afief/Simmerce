@@ -43,7 +43,7 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
-		when('/editor', {
+		when('/editor/:ke', {
 			templateUrl: 'html/editor.html',
 			controller: 'EditController',
 			headerShow: true,
@@ -202,12 +202,14 @@ pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', 
 
 }]);
 
-pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', "$routeParams", function($scope, $root, user, $location, $routeParams){
 	$scope.buyItem = function() {
 		window.dats = {};
 		$location.path("/order");
 	}
 
+	$root.swf = "model" + $routeParams.ke;
+	$root.modelke = $routeParams.ke;
 	$root.pilihan = {};
 
 	window.removeEventListener("desainDipilih", updateDesain);
@@ -219,7 +221,37 @@ pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$locat
 }]);
 
 pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+	
+	$root.swf = "model1";
+	$root.modelke = 1;
+	$root.pilihan = {};
 
+	user.getData().then(function(res) {
+		if (res.status) {
+			lg(res.data);
+			$scope.currentModel = res.data[$root.modelke-1];
+
+			$scope.jumlah = {
+				ayah: 1, ibu: 1, laki: 1, perempuan: 1
+			}
+			$scope.harga = {
+				ayah: $scope.currentModel.harga_dewasa, 
+				ibu: $scope.currentModel.harga_dewasa,
+				laki: $scope.currentModel.harga_anak,
+				perempuan: $scope.currentModel.harga_anak
+			}
+		}
+	});
+	$scope.totalHarga = function() {
+		total = 0;
+		for (var k in $scope.jumlah) {
+			if ($scope.jumlah[k] < 0)
+				$scope.jumlah[k] = 0;
+			total += $scope.jumlah[k] * $scope.harga[k];
+		}
+		return total;
+	}
+	
 	if ($root.pilihan) {
 		window.removeEventListener("flashEnabled", flashLoaded);
 		window.addEventListener("flashEnabled", flashLoaded);

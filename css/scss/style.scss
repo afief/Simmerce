@@ -144,6 +144,17 @@ body {
 			max-width: 100%;
 		}
 	}
+	.order {
+		table {
+			td,th {
+				padding: 10px;
+				input[type=text] {
+					width: 50px;
+					text-align: center;
+				}
+			}
+		}
+	}
 }
 
 .loading {

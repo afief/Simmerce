@@ -1,12 +1,12 @@
 <div class="page editor">
 	<div class="row container">
 		
-		<div class="wrapper">
-			<h2>Order</h2>
+		<div class="wrapper order">
+			<h1>Order</h1>
 			<div class="col-sm-5">
 				<div class="flash">
 					<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="400" height="300" id="main" align="middle">
-						<param name="movie" value="editor/model1.swf" />
+						<param name="movie" value="editor/{{swf}}.swf" />
 						<param name="quality" value="high" />
 						<param name="bgcolor" value="#ffffff" />
 						<param name="play" value="true" />
@@ -18,8 +18,8 @@
 						<param name="salign" value="" />
 						<param name="allowScriptAccess" value="sameDomain" />
 						<!--[if !IE]>-->
-						<object type="application/x-shockwave-flash" id="main2" data="editor/model1.swf" width="400" height="300">
-							<param name="movie" value="editor/model1.swf" />
+						<object type="application/x-shockwave-flash" id="main2" data="editor/{{swf}}.swf" width="400" height="300">
+							<param name="movie" value="editor/{{swf}}.swf" />
 							<param name="quality" value="high" />
 							<param name="bgcolor" value="#ffffff" />
 							<param name="play" value="true" />
@@ -41,6 +41,44 @@
 				</div>
 			</div>
 			<div class="col-sm-7">
+				<h3>{{currentModel.nama}}</h3>
+				<div class="infoproduk">
+					<p>
+						{{currentModel.keterangan}}
+					</p>
+					<h4>Jumlah Order</h4>
+					<table>
+						<tr>
+							<th></th>
+							<th>Jumlah</th>
+							<th>Harga</th>
+						</tr>
+						<tr>
+							<td>Ayah</td>
+							<td><input type="text" ng-model="jumlah.ayah"></td>
+							<td>{{harga.ayah * jumlah.ayah}}</td>
+						</tr>
+						<tr>
+							<td>Ibu</td>
+							<td><input type="text" ng-model="jumlah.ibu"></td>
+							<td>{{harga.ibu * jumlah.ibu}}</td>
+						</tr>
+						<tr>
+							<td>Anak Laki-laki</td>
+							<td><input type="text" ng-model="jumlah.laki"></td>
+							<td>{{harga.laki * jumlah.laki}}</td>
+						</tr>
+						<tr>
+							<td>Anak Perempuan</td>
+							<td><input type="text" ng-model="jumlah.perempuan"></td>
+							<td>{{harga.perempuan * jumlah.perempuan}}</td>
+						</tr>
+						<tr>
+							<td>Total Harga</td>
+							<td>{{totalHarga()}}</td>
+						</tr>
+					</table>
+				</div>
 				<div class="buttons" ng-click="buyItem(currentModel)">
 					<button>
 						<span class="icon"><i class="fa fa-cart-plus"></i></span>
@@ -48,9 +86,6 @@
 					</button>
 				</div>
 			</div>
-		</div>
-		<div class="wrapper">
-			
 		</div>
 
 	</div>
