@@ -16,6 +16,12 @@ body {
 	width: 900px;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 3px -2px #444444;
+	h1 {
+		margin-bottom: 15px;
+		border-bottom: solid 1px #666;
+		padding-bottom: 10px;
+		font-size: xx-large;
+	}
 	h3.title {
 		width: 100%;
 		border-bottom: solid 1px $color_grey5;
@@ -120,6 +126,7 @@ body {
 		table {
 			th, td {
 				padding: 10px;
+				text-align: center;
 				&:nth-child(even) {
 					background-color: $color_grey5;
 				}
@@ -132,7 +139,7 @@ body {
 				}
 			}
 			img {
-				width: 50px;
+				width: 250px;
 			}
 		}
 	}
@@ -151,6 +158,19 @@ body {
 				input[type=text] {
 					width: 50px;
 					text-align: center;
+				}
+			}
+		}
+	}
+	.alamat {
+		table {
+			tr {
+				td {
+					vertical-align: top;
+					textarea, input {
+						min-width: 100%;
+						text-align: left !important;
+					}
 				}
 			}
 		}

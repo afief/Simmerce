@@ -1,6 +1,6 @@
 var userModule = angular.module("UserModule", [], ["$httpProvider", function($httpProvider) {
-		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-	}]);
+	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+}]);
 
 userModule.factory("user", ["$http","$q", function($http, $q) {
 
@@ -142,7 +142,17 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var defer = $q.defer();
 			var ini = this;
 
-			$http.post(apiUrl + "/pesan", data).
+			$http.post(apiUrl + "/pesan", serialize(data)).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		getPesanan: function() {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "/pesanan").
 			success(defer.resolve).
 			catch(defer.reject);
 
@@ -152,8 +162,14 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 }]);
 
-userModule.run(["user", function(user) {
-	user.cek();
+userModule.run(["user", "$rootScope", function(user, $root) {
+	user.cek().then(function() {
+		user.getPesanan().then(function(res) {
+			if (res.status) {
+				$root.numCart = res.data.length;
+			}
+		});
+	});
 }]);
 userModule.run(["$http", "user", function($http, user) {
 	$http.defaults.headers.common.key = user.getKey();

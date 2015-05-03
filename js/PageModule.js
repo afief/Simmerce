@@ -55,6 +55,12 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/alamat', {
+			templateUrl: 'html/alamat.html',
+			controller: 'AlamatController',
+			headerShow: true,
+			authenticate: true
+		}).
 		when('/kostum/:parent', {
 			templateUrl: 'html/kostumisasi.html',
 			controller: 'KostumisasiController',
@@ -110,6 +116,7 @@ pageModule.service("pesanan", function() {
 	}
 	this.compile = function() {
 		return {
+			image: this.image64,
 			pesanan: JSON.stringify(this.pilihan),
 			jumlah : JSON.stringify(this.jumlah),
 			alamat : this.alamat,
@@ -165,6 +172,9 @@ pageModule.run(["$rootScope", "user", "$location", 'loadingSrv', function($root,
 
 
 	$root.keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+	$root.harga_dewasa = 117500;
+	$root.harga_anak = 67500;
+	$root.numCart = 0;
 }
 ]);
 
@@ -264,6 +274,9 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 		return;
 	}
 
+	//lg(pesanan.image64);
+	$scope.previewImage = pesanan.image64;
+
 	user.getData().then(function(res) {
 		if (res.status) {
 			lg(res.data);
@@ -293,26 +306,39 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 	}
 	$scope.buyItem = function() {
 		lgc();
-		lgi(pesanan.jumlah, pesanan.pilihan);
-
-	}
-	
-	window.removeEventListener("flashEnabled", flashLoaded);
-	window.addEventListener("flashEnabled", flashLoaded);
-
-	function flashLoaded() {
-		lgi(pesanan.pilihan);
-		try {
-			window["main"].gantiDesain(pesanan.pilihan); 
-			//lge(window["main"].SetActive(false));
-		} catch(er) {}
-		try {
-			window["main2"].gantiDesain(pesanan.pilihan);
-			//lge(window["main2"].SetActive(false));
-		} catch(er) {}
+		$location.path("/alamat");
 	}
 
 }]);
+
+pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$location', "pesanan",
+	function($scope, $root, user, $location, pesanan){
+
+	if (!pesanan.sudahDesain) {
+		$location.path("/model");
+		return;
+	}
+
+	$scope.previewImage = pesanan.image64;
+	$scope.ongkir = 10000;
+	$scope.kota = "";
+	$scope.alamat = "";
+
+	$scope.buyItem = function() {
+		pesanan.kota = $scope.kota;
+		pesanan.alamat = $scope.alamat;
+
+		$root.loadingSrv.show();
+		user.setPesanan(pesanan.compile()).then(function(res) {
+			$location.path("/cart");
+			$root.loadingSrv.hide();
+		}, function() {
+			$root.loadingSrv.hide();
+			alert("Gagal tersambung ke internet");
+		});
+	}
+}]);
+
 pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
 
@@ -324,6 +350,26 @@ pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$locat
 
 pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location) {
 
-	lg($root.keranjang);
+	lgc();
+	$scope.pesanan = [];
+	$root.loadingSrv.show();
+	user.getPesanan().then(function(res) {
+		if (res.status) {
+			$scope.pesanan = res.data;
+			$root.numCart = $scope.pesanan.length;
+			for (var i = 0; i < $scope.pesanan.length; i++) {
+				$scope.pesanan[i].image = apiUrl + $scope.pesanan[i].image;
+				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
+			}
+		}
+		$root.loadingSrv.hide();
+	}, function() {
+		$root.loadingSrv.hide();
+	});
+
+	$scope.totalHarga = function(jumlah) {
+		return	jumlah.ayah * $root.harga_dewasa + jumlah.ibu * $root.harga_dewasa +
+				jumlah.laki * $root.harga_anak + jumlah.perempuan * $root.harga_anak;
+	}
 
 }]);

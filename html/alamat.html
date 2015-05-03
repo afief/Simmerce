@@ -1,0 +1,41 @@
+<div class="page editor">
+	<div class="row container">
+		
+		<div class="wrapper order alamat">
+			<h1>Alamat Pengiriman</h1>
+			<div class="col-sm-5">
+				<div class="flash">
+					<img data-ng-src="data:image/jpg;base64,{{previewImage}}">
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="infoproduk">
+					Pembuatan baju membutuhkan waktu 2 minggu dan maksimal 1 bulan sampai barang diterima per paket (ayah, ibu, 1 anak laki-laki, 1 anak perempuan). Waktu akan disesuaikan dengan jumlah pemesanan.
+					<hr>
+					<table>
+						<tr>
+							<td>Alamat Lengkap</td>
+							<td><textarea ng-model="alamat" rows="10"></textarea></td>
+						</tr>
+						<tr>
+							<td>Kota</td>
+							<td>
+								<input type="text" ng-model="kota">
+							</td>
+						</tr>
+						<tr>
+							<td>Biaya Pengiriman</td>
+							<td>
+								Rp {{numberWithCommas(ongkir)}},-
+							</td>
+						</tr>
+					</table>
+					<button ng-click="buyItem()">
+						<span class="icon"><i class="fa fa-cart-plus"></i></span>
+						<span class="text">Lanjut Pembayaran</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

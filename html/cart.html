@@ -6,23 +6,38 @@
 		<div class="wrapper part cart">
 			<table>
 				<tr>
-					<th>&nbsp;</th>
-					<th>Nama</th>
-					<th>Jumlah Beli</th>
-					<th>Harga Pasang Dewasa</th>
-					<th>Harga Pasang Anak</th>
+					<th>Model</th>
+					<th>Ayah</th>
+					<th>Ibu</th>
+					<th>Anak Laki-laki</th>
+					<th>Anak Perempuan</th>
 					<th>Total Harga</th>
 					<th>Status</th>
 				</tr>
-				<tr ng-repeat="item in keranjang track by $index">
+				<tr ng-repeat="item in pesanan track by $index">
 					<td>
-						<img ng-src="{{item.model.image}}" alt="">
+						<img ng-src="{{item.image}}" alt="">
 					</td>
-					<td>{{item.model.nama}}</td>
-					<td>{{item.jumlah}}</td>
-					<td>{{numberWithCommas(item.model.harga_dewasa*2)}}</td>
-					<td>{{numberWithCommas(item.model.harga_anak*2)}}</td>
-					<td>{{numberWithCommas(item.jumlah * (parseInt(item.model.harga_dewasa)*2 + parseInt(item.model.harga_anak)*2))}}</td>
+					<td>
+						<div>{{item.jumlah.ayah}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ayah * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.ibu}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ibu * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.laki}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.laki * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.perempuan}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.perempuan * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div> +ongkir 10.000</div>
+						<div><b>Rp {{numberWithCommas(totalHarga(item.jumlah) + 10000)}},-</b></div>
+					</td>
 					<td>{{item.status}}</td>
 				</tr>
 			</table>
