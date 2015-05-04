@@ -6,6 +6,11 @@
 			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar biru dan berbagai motif yang dapat dipilih dan dikombinasikan.",
 			"harga_dewasa" : 117500,
 			"harga_anak"   : 67500
+		},{
+			"nama" : "Red Petal",
+			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar merah dan berbagai motif yang dapat dipilih dan dikombinasikan.",
+			"harga_dewasa" : 117500,
+			"harga_anak"   : 67500
 		}
 	]
 }
