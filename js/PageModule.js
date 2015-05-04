@@ -259,6 +259,11 @@ pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$locat
 		$location.path("/order");
 	}
 
+	if (isNaN($routeParams.ke) || ($routeParams.ke < 1) || ($routeParams.ke > 2)) {
+		$location.path("/home");
+		return;
+	}
+
 	$root.swf = "model" + $routeParams.ke;
 	$root.modelke = $routeParams.ke;
 	pesanan.reset();
