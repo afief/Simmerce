@@ -52,6 +52,72 @@ $app->get("/pesanan", function() {
 
 	echo json_encode($result);
 });
+$app->get("/semua_pesanan", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$res = $db->select("tik_pesanan", ["[>]me_users" => ["id_user" => "id"]], 
+		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.alamat", "tik_pesanan.kota",
+		"tik_pesanan.kodepos", "tik_pesanan.provinsi", "tik_pesanan.image", "tik_pesanan.status"],
+		["tik_pesanan.status" => "belum lunas"]);
+	if ($res) {
+		$result->status = true;
+		$result->data = $res;		
+	}
+
+	echo json_encode($result);
+});
+$app->get("/semua_pesanan_lunas", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$res = $db->select("tik_pesanan", ["[>]me_users" => ["id_user" => "id"]], 
+		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.alamat", "tik_pesanan.kota",
+		"tik_pesanan.kodepos", "tik_pesanan.provinsi", "tik_pesanan.image", "tik_pesanan.status"],
+		["tik_pesanan.status" => "lunas"]);
+	if ($res) {
+		$result->status = true;
+		$result->data = $res;		
+	}
+
+	echo json_encode($result);
+});
+
+$app->post("/lunas_pesanan", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$ids = getPosts("ids");
+
+	$res = $db->update("tik_pesanan", ["status" => "lunas"], ["id" => $ids]);
+	if ($res) {
+		$result->status = true;
+	}
+
+	echo json_encode($result);
+});
+
+$app->post("/belumlunas_pesanan", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$ids = getPosts("ids");
+
+	$res = $db->update("tik_pesanan", ["status" => "belum lunas"], ["id" => $ids]);
+	if ($res) {
+		$result->status = true;
+	}
+
+	echo json_encode($result);
+});
 
 $app->post("/updateprofile", function() {
 	global $db;

@@ -8,6 +8,12 @@
 				<span class="icon"><i class="fa fa-home"></i></span>
 				<span class="text">Home</span>
 			</button>
+
+			<button ng-click="changePath('/admin')" ng-show="user.profile.username == 'admin'">
+				<span class="icon"><i class="fa fa-user-secret"></i></span>
+				<span class="text">Admin</span>
+			</button>
+
 			<button ng-click="changePath('/profile')">
 				<span class="icon"><i class="fa fa-user"></i></span>
 				<span class="text">Profile</span>

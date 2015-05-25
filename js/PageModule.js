@@ -30,6 +30,18 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/admin', {
+			templateUrl: 'html/admin.html',
+			controller: 'AdminController',
+			headerShow: true,
+			authenticate: true
+		}).
+		when('/admin/lunas', {
+			templateUrl: 'html/admin.html',
+			controller: 'AdminLunasController',
+			headerShow: true,
+			authenticate: true
+		}).
 
 		when('/profile', {
 			templateUrl: 'html/profile.html',
@@ -250,45 +262,45 @@ pageModule.controller('KostumisasiController', ['$scope', '$rootScope', 'user', 
 
 pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$location', "$routeParams", "pesanan",
 	function($scope, $root, user, $location, $routeParams, pesanan){
-	$scope.buyItem = function() {
-		var str = "";
-		try {
-			str = window["main"].GetBitmap();
-		} catch(er) {}
-		try {
-			str = window["main2"].GetBitmap();
-		} catch(er) {}
-		pesanan.image64 = str;
+		$scope.buyItem = function() {
+			var str = "";
+			try {
+				str = window["main"].GetBitmap();
+			} catch(er) {}
+			try {
+				str = window["main2"].GetBitmap();
+			} catch(er) {}
+			pesanan.image64 = str;
 
-		pesanan.sudahDesain = true;
-		window.dats = {};
-		$location.path("/order");
-	}
+			pesanan.sudahDesain = true;
+			window.dats = {};
+			$location.path("/order");
+		}
 
-	if (isNaN($routeParams.ke) || ($routeParams.ke < 1) || ($routeParams.ke > 3)) {
-		$location.path("/home");
-		return;
-	}
+		if (isNaN($routeParams.ke) || ($routeParams.ke < 1) || ($routeParams.ke > 3)) {
+			$location.path("/home");
+			return;
+		}
 
-	$root.swf = "model" + $routeParams.ke;
-	$root.modelke = $routeParams.ke;
-	pesanan.reset();
+		$root.swf = "model" + $routeParams.ke;
+		$root.modelke = $routeParams.ke;
+		pesanan.reset();
 
-	window.removeEventListener("desainDipilih", updateDesain);
-	window.addEventListener("desainDipilih", updateDesain);
-	function updateDesain() {
-		pesanan.pilihan = window.dats;
-		lg(window.dats);
-	}
-}]);
+		window.removeEventListener("desainDipilih", updateDesain);
+		window.addEventListener("desainDipilih", updateDesain);
+		function updateDesain() {
+			pesanan.pilihan = window.dats;
+			lg(window.dats);
+		}
+	}]);
 
 pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$location', "pesanan",
 	function($scope, $root, user, $location, pesanan){
 
-	if (!pesanan.sudahDesain) {
-		$location.path("/model");
-		return;
-	}
+		if (!pesanan.sudahDesain) {
+			$location.path("/model");
+			return;
+		}
 
 	//lg(pesanan.image64);
 	$scope.previewImage = pesanan.image64;
@@ -330,34 +342,34 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$location', "pesanan",
 	function($scope, $root, user, $location, pesanan){
 
-	if (!pesanan.sudahDesain) {
-		$location.path("/model");
-		return;
-	}
+		if (!pesanan.sudahDesain) {
+			$location.path("/model");
+			return;
+		}
 
-	$scope.previewImage = pesanan.image64;
-	$scope.ongkir = 10000;
-	$scope.kota = "";
-	$scope.alamat = "";
-	$scope.kodepos = "";
-	$scope.provinsi = "";
+		$scope.previewImage = pesanan.image64;
+		$scope.ongkir = 10000;
+		$scope.kota = "";
+		$scope.alamat = "";
+		$scope.kodepos = "";
+		$scope.provinsi = "";
 
-	$scope.buyItem = function() {
-		pesanan.kota = $scope.kota;
-		pesanan.alamat = $scope.alamat;
-		pesanan.kodepos = $scope.kodepos;
-		pesanan.provinsi = $scope.provinsi;
+		$scope.buyItem = function() {
+			pesanan.kota = $scope.kota;
+			pesanan.alamat = $scope.alamat;
+			pesanan.kodepos = $scope.kodepos;
+			pesanan.provinsi = $scope.provinsi;
 
-		$root.loadingSrv.show();
-		user.setPesanan(pesanan.compile()).then(function(res) {
-			$location.path("/cart");
-			$root.loadingSrv.hide();
-		}, function() {
-			$root.loadingSrv.hide();
-			alert("Gagal tersambung ke internet");
-		});
-	}
-}]);
+			$root.loadingSrv.show();
+			user.setPesanan(pesanan.compile()).then(function(res) {
+				$location.path("/cart");
+				$root.loadingSrv.hide();
+			}, function() {
+				$root.loadingSrv.hide();
+				alert("Gagal tersambung ke internet");
+			});
+		}
+	}]);
 
 pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
@@ -377,6 +389,87 @@ pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$locat
 
 
 }]);
+
+pageModule.controller('AdminLunasController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+	$scope.title = "Pesanan Pelanggan Lunas"
+	$scope.pesanan = [];
+	user.getAllPesananLunas().then(function(res) {
+		if (res.status) {
+			$scope.pesanan = res.data;
+
+			for (var i = 0; i < $scope.pesanan.length; i++) {
+				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
+			}
+			lgi($scope.pesanan);
+		}
+	});
+
+	$scope.saveData = function() {
+		var ids = [];
+		for (var i = 0; i < $scope.pesanan.length; i++) {
+			if ($scope.pesanan[i].status == "belum lunas")
+				ids.push($scope.pesanan[i].id);
+		}
+		lgi("IDS", ids);
+
+		$root.loadingSrv.show();
+		user.belumLunasPesanan(ids).then(function(res) {
+			if (res.status) {
+				var i = 0;
+				while (i < $scope.pesanan.length) {
+					if (ids.indexOf($scope.pesanan[i].id) >= 0)
+						$scope.pesanan.splice(i, 1);
+					else
+						i++;
+				}
+			}
+			$root.loadingSrv.hide();
+		}, function() {
+			$root.loadingSrv.hide();
+		});
+	}
+}]);
+pageModule.controller('AdminController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+	$scope.title = "Pesanan Pelanggan Belum Lunas"
+	$scope.pesanan = [];
+	user.getAllPesanan().then(function(res) {
+		if (res.status) {
+			$scope.pesanan = res.data;
+
+			for (var i = 0; i < $scope.pesanan.length; i++) {
+				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
+			}
+			lgi($scope.pesanan);
+		}
+	});
+
+	$scope.saveData = function() {
+		var ids = [];
+		for (var i = 0; i < $scope.pesanan.length; i++) {
+			if ($scope.pesanan[i].status == "lunas")
+				ids.push($scope.pesanan[i].id);
+		}
+		lgi("IDS", ids);
+
+		$root.loadingSrv.show();
+		user.lunasPesanan(ids).then(function(res) {
+			if (res.status) {
+				var i = 0;
+				while (i < $scope.pesanan.length) {
+					if (ids.indexOf($scope.pesanan[i].id) >= 0)
+						$scope.pesanan.splice(i, 1);
+					else
+						i++;
+				}
+			}
+			$root.loadingSrv.hide();
+		}, function() {
+			$root.loadingSrv.hide();
+		});
+	}
+
+}]);
+
 
 pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location) {
 
@@ -399,7 +492,7 @@ pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$locat
 
 	$scope.totalHarga = function(jumlah) {
 		return	jumlah.ayah * $root.harga_dewasa + jumlah.ibu * $root.harga_dewasa +
-				jumlah.laki * $root.harga_anak + jumlah.perempuan * $root.harga_anak;
+		jumlah.laki * $root.harga_anak + jumlah.perempuan * $root.harga_anak;
 	}
 
 }]);

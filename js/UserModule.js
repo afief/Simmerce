@@ -158,11 +158,51 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 			return defer.promise;
 		},
+		lunasPesanan: function(ids) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "lunas_pesanan", serialize({ids: ids})).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		belumLunasPesanan: function(ids) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "belumlunas_pesanan", serialize({ids: ids})).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
 		getPesanan: function() {
 			var defer = $q.defer();
 			var ini = this;
 
 			$http.get(apiUrl + "pesanan").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		getAllPesanan: function() {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "semua_pesanan").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		getAllPesananLunas: function() {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "semua_pesanan_lunas").
 			success(defer.resolve).
 			catch(defer.reject);
 

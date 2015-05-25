@@ -1,0 +1,77 @@
+<div class="page cart">
+	
+	
+	<div class="row container">
+	<header style="padding: 20px;">
+			<div class="buttons">
+				<button ng-click="changePath('/admin')">
+					<span class="icon"><i class="fa fa-tags"></i></span>
+					<span class="text">Lihat Pesanan Belum Lunas</span>
+				</button>
+				<button ng-click="changePath('/admin/lunas')">
+					<span class="icon"><i class="fa fa-money"></i></span>
+					<span class="text">Lihat Pesanan Lunas</span>
+				</button>
+			</div>
+		</header>
+
+		<h3 class="title">{{title}}</h3>
+
+		<div class="wrapper part cart">
+			<table ng-show="pesanan.length">
+				<tr>
+					<th>Model</th>
+					<th>Nama Pemesan</th>
+					<th>Ayah</th>
+					<th>Ibu</th>
+					<th>Anak Laki-laki</th>
+					<th>Anak Perempuan</th>
+					<th>Total Harga</th>
+					<th>Status</th>
+				</tr>
+				<tr ng-repeat="item in pesanan track by $index">
+					<td>
+						<img ng-src="uploads/{{item.image}}" alt="">
+					</td>
+					<td>
+						<b>{{item.username}} ({{ item.nama }})</b>
+					</td>
+					<td>
+						<div>{{item.jumlah.ayah}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ayah * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.ibu}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ibu * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.laki}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.laki * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.perempuan}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.perempuan * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div> +ongkir 10.000</div>
+						<div><b>Rp {{numberWithCommas(totalHarga(item.jumlah) + 10000)}},-</b></div>
+					</td>
+					<td>
+						<select ng-model="item.status">
+							<option value="belum lunas">Belum Lunas</option>
+							<option value="lunas">Lunas</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<div  ng-hide="pesanan.length">
+				Belum ada pemesanan SarimbIT. <a href="#/model">Lakukan Pemesanan</a>
+			</div>
+			<button ng-show="pesanan.length" style="margin-top: 20px;" ng-click="saveData()">
+				<span class="icon"><i class="fa fa-floppy-o"></i></span>
+				<span class="text">Simpan</span>
+			</button>
+		</div>
+	</div>
+
+</div>
