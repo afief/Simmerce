@@ -1,0 +1,26 @@
+header {
+	@include clearfix;
+	&.container {
+		padding-bottom: 0px;
+		h1 {
+			font-size: medium;
+			border-bottom: none;
+			margin: 0px;
+			padding: 10px 20px;
+			display: inline-block;
+		}
+	}
+	.buttons {
+		float: right;
+		margin: 0px;
+		button {
+			background-color: transparent;
+			box-shadow: none;
+			color: $color_grey;
+			border: none;
+			&:hover {
+				color: $color_primary2;
+			}
+		}
+	}
+}

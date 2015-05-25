@@ -1,4 +1,6 @@
-var userModule = angular.module("UserModule", []);
+var userModule = angular.module("UserModule", [], ["$httpProvider", function($httpProvider) {
+	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+}]);
 
 userModule.factory("user", ["$http","$q", function($http, $q) {
 
@@ -61,7 +63,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 				if (data.status) {
 					defer.resolve(true);
 				} else {
-					defer.reject(false);
+					defer.reject(data.message);
 				}
 			}).
 			catch(function(err) {
@@ -71,21 +73,22 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			return defer.promise;
 		},
 		cek: function() {
-			console.log("key", key);
+			lgi("cek", key);
 			var defer = $q.defer();
 			var ini = this;
 			
 			if (key == "")
-				return $q.reject("no_key");
+				return $q.when({status: false});
 
 			$http.post(apiUrl + "user", serialize({key: key})).
 			success(function(data, status) {
+				lgi("cek", data.status);
 				if (data.status) {
 					isLogin = true;
 					ini.profile = data.data;
-					defer.resolve(data.data);
+					defer.resolve(data);
 				} else {
-					defer.reject(data.message);
+					defer.resolve(data);
 				}
 			}).
 			catch(function(err) {
@@ -112,6 +115,16 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 
 			return defer.promise;
 		},
+		updateProfil: function(profil) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "updateprofile", serialize(profil)).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
 
 		getData: function() {
 			var defer = $q.defer();
@@ -122,17 +135,55 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			catch(defer.reject);
 
 			return defer.promise;
+		},
+		getBatiks: function(parent) {
+			lg("getBatiks", parent.toString());
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "/batik/" + parent.toString()).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		setPesanan: function(data) {
+			lgi("set pesanan", data);
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "/pesan", serialize(data)).
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		getPesanan: function() {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "/pesanan").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
 		}
 	}
 
 }]);
 
-// userModule.run(["user", function(user) {
-// 	user.cek();
-// }]);
-// userModule.run(["$http", "user", function($http, user) {
-// 	$http.defaults.headers.common.key = user.getKey();
-// }]);
+userModule.run(["user", "$rootScope", function(user, $root) {
+	user.cek().then(function() {
+		user.getPesanan().then(function(res) {
+			if (res.status) {
+				$root.numCart = res.data.length;
+			}
+		});
+	});
+}]);
+userModule.run(["$http", "user", function($http, user) {
+	$http.defaults.headers.common.key = user.getKey();
+}]);
 
 userModule.factory("connectivity", function() {
 	return {

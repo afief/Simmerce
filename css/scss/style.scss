@@ -1,27 +1,41 @@
 @import "configure";
 @import "elements";
+@import "header";
 
 body {
 	background-color: #efefef;
+	background-image: url($baseUrl + "uploads/bg.png");
+}
+.buttons {
+	display: table;
+	margin: 20px auto;
 }
 .container {
 	margin: 20px auto;
 	padding: 0px;
-	max-width: 900px;
+	padding-bottom: 20px;
+	width: 900px;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 3px -2px #444444;
+	@include gradientgrey;
+	h1 {
+		margin-bottom: 15px;
+		border-bottom: solid 1px #666;
+		padding-bottom: 10px;
+		font-size: xx-large;
+	}
 	h3.title {
 		width: 100%;
 		border-bottom: solid 1px $color_grey5;
 		font-size: x-large;
 		padding: 15px;
 	}
-	.part {
-		padding-top: 15px;
-		padding-bottom: 15px;
+	.infokecil {
+		font-size: small;
+		text-align: center;
 	}
-	.preview {
-		width: 100%;
+	.wrapper {
+		padding: 10px 20px;
 	}
 	
 	.koleksi {
@@ -82,6 +96,182 @@ body {
 		}
 		button {
 			margin-top: 10px;
+		}
+	}
+	.models {
+		.items {
+			padding: 10px;
+			margin: 0px auto;
+			display: table;
+			@include clearfix;
+			li {
+				width: 185px;
+				margin-right: 4%;
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+	.kostum {
+		.items {
+			padding: 0px;
+			@include clearfix;
+			li {
+				width: 100%;
+				margin-right: 0px;
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+	.cart {
+		table {
+			th, td {
+				padding: 10px;
+				text-align: center;
+				&:nth-child(even) {
+					background-color: $color_grey5;
+				}
+			}
+			th {
+				text-align: center;
+				background-color: $color_primary1;
+				&:nth-child(even) {
+					background-color: $color_primary1;
+				}
+			}
+			img {
+				width: 150px;
+			}
+		}
+	}
+	.flash {
+		display: table;
+		margin: 0px auto;
+		width: 100%;
+		object {
+			max-width: 100%;
+		}
+	}
+	.order {
+		table {
+			td,th {
+				padding: 10px;
+				input[type=text] {
+					width: 50px;
+					text-align: center;
+				}
+			}
+		}
+	}
+	.alamat {
+		table {
+			tr {
+				td {
+					vertical-align: top;
+					textarea, input {
+						min-width: 100%;
+						text-align: left !important;
+					}
+				}
+			}
+		}
+	}
+
+	.carousel {
+		ul {
+			height: 300px;
+		}
+	}
+
+	&.sponsors {
+		padding: 0px;
+		.wrapper {
+			display: table;
+			margin: 0px auto;
+		}
+		.title {
+			color: $color_grey4;
+			display: inline-block;
+		}
+		img {
+			margin: 0px 10px;
+			height: 50px;
+		}
+	}
+
+	&.pengantar {
+		text-align: center;
+		padding: 20px;
+		h4 {
+			font-weight: bold;
+		}
+		img {
+			height: 100px;
+		}
+		.infoproduk {
+			max-width: 700px;
+			display: table;
+			margin: 0px auto;
+			margin-top: 20px;
+		}
+	}
+	&.profile {
+		table {
+			margin: 20px auto;
+			min-width: 500px;
+			tr {
+				td {
+					font-size: medium;
+					padding: 10px;
+					vertical-align: top;
+					input, textarea {
+						outline: none;
+						border: none;
+						background-color: transparent;
+						border-bottom: solid 1px $color_grey3;
+						&:focus, &:active {
+							padding: 7px 10px;
+							border: solid 1px $color_grey3;
+							box-shadow: 1px 1px 3px -1px #666;
+						}
+					}
+					&:last-child {
+						display: inline-block;
+						&:before {
+							vertical-align: top;
+							content: ":  ";
+						}
+					}
+				}
+			}
+		}
+		button {
+			display: table;
+			margin: 0px auto;
+		}
+	}
+}
+
+.loading {
+	position: fixed;
+	z-index: 100;
+	background-color: rgba(255,255,255,0.8);
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	.wrapper {
+		.text {
+			font-size: small;
+			position: absolute;
+			left: 40%;
+			left: calc(50% - 20px);
+			top: 30%;
+			top: calc(50% - 10px);
+			font-weight: bold;
 		}
 	}
 }

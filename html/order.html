@@ -1,0 +1,65 @@
+<div class="page editor">
+	<div class="row container">
+		
+		<div class="wrapper order">
+			<h1>Order</h1>
+			<div class="col-sm-5">
+				<div class="flash">
+					<img data-ng-src="data:image/jpg;base64,{{previewImage}}">
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<h3>{{currentModel.nama}}</h3>
+				<div class="infoproduk">
+					<p>
+						{{currentModel.keterangan}}
+					</p>
+					<h4>Jumlah Order</h4>
+					<table>
+						<tr>
+							<th></th>
+							<th>Jumlah</th>
+							<th>Harga Satuan</th>
+							<th>Total Harga</th>
+						</tr>
+						<tr>
+							<td>Ayah</td>
+							<td><input type="text" ng-model="jumlah.ayah"></td>
+							<td>Rp {{numberWithCommas(harga.ayah)}},-</td>
+							<td>Rp {{numberWithCommas(harga.ayah * jumlah.ayah)}},-</td>
+						</tr>
+						<tr>
+							<td>Ibu</td>
+							<td><input type="text" ng-model="jumlah.ibu"></td>
+							<td>Rp {{numberWithCommas(harga.ibu)}},-</td>
+							<td>Rp {{numberWithCommas(harga.ibu * jumlah.ibu)}},-</td>
+						</tr>
+						<tr>
+							<td>Anak Laki-laki</td>
+							<td><input type="text" ng-model="jumlah.laki"></td>
+							<td>Rp {{numberWithCommas(harga.laki)}},-</td>
+							<td>Rp {{numberWithCommas(harga.laki * jumlah.laki)}},-</td>
+						</tr>
+						<tr>
+							<td>Anak Perempuan</td>
+							<td><input type="text" ng-model="jumlah.perempuan"></td>
+							<td>Rp {{numberWithCommas(harga.perempuan)}},-</td>
+							<td>Rp {{numberWithCommas(harga.perempuan * jumlah.perempuan)}},-</td>
+						</tr>
+						<tr>
+							<td colspan="3">Total Harga</td>							
+							<td><b>Rp {{numberWithCommas(totalHarga())}},-</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="buttons" ng-click="buyItem()">
+					<button>
+						<span class="icon"><i class="fa fa-cart-plus"></i></span>
+						<span class="text">Lanjutkan Pembelian</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -32,6 +32,17 @@ $color_secondary3: #33691E;
         clear: both;
     }
 }
+@mixin gradientgrey {
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #ffffff 0%, #ffffff 69%, #ffffff 69%, #eeeeee 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(69%,#ffffff), color-stop(69%,#ffffff), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#ffffff 69%,#ffffff 69%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #ffffff 0%,#ffffff 69%,#ffffff 69%,#eeeeee 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #ffffff 0%,#ffffff 69%,#ffffff 69%,#eeeeee 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #ffffff 0%,#ffffff 69%,#ffffff 69%,#eeeeee 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
 
 @font-face {
     font-family: "Comic Neue";

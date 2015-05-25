@@ -7,20 +7,28 @@
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/angular-carousel.min.css">
 	<link rel="stylesheet" href="css/style.php/style.scss">
 
 	<script src="js/angular/angular.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/angular/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular/angular-touch.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular-carousel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 
 	<!-- Modules !-->
 	<script src="js/UserModule.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/HeaderModule.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/PageModule.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 <body>
 
+	<div header-dir></div>
 	<div ng-view></div>	
-	
+	<div footer-dir></div>
+
+
+	<div loading-dir></div>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<div class="headerContainer" ng-show="headerShow">
+	<header class="container">
+		
+		<h1 ng-click="changePath('/home')">Sarimb<b>IT</b></h1>
+
+		<div class="buttons" ng-show="user.isLogin()">
+			<button ng-click="changePath('/home')">
+				<span class="icon"><i class="fa fa-home"></i></span>
+				<span class="text">Home</span>
+			</button>
+			<button ng-click="changePath('/profile')">
+				<span class="icon"><i class="fa fa-user"></i></span>
+				<span class="text">Profile</span>
+			</button>
+			<button ng-click="changePath('/cart')">
+				<span class="icon"><i class="fa fa-shopping-cart"></i></span>
+				<span class="text">{{numCart}}</span>
+			</button>
+			<button ng-click="logoutUser()">
+				<span class="icon"><i class="fa fa-sign-out"></i></span>
+				<span class="text">Logout</span>
+			</button>
+		</div>
+
+		<div class="buttons" ng-hide="user.isLogin()">
+			<button ng-click="changePath('/login')">
+				<span class="icon"><i class="fa fa-sign-in"></i></span>
+				<span class="text">Login</span>
+			</button>
+		</div>
+
+	</header>
+</div>

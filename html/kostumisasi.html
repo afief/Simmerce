@@ -1,0 +1,43 @@
+<div class="page model">
+	<div class="row container">
+		<h2>Kostumisasi</h2>
+
+		<div class="col-sm-6 preview">
+			<img ng-src="{{currentModel.image}}" alt="">
+		</div>
+		<div class="col-sm-1 kostum models koleksi">
+			<ul class="items">
+				<li ng-repeat="model in modelData" style="background-image: url({{model.image}}); min-height: 50px" ng-click="changeModel(model)">
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-5 infoproduk">
+			<h3 class="nama">{{currentModel.nama}}</h3>
+			<div class="keterangan">{{currentModel.keterangan}}</div>
+
+			<div class="stok">Harga pasang dewasa : <span>Rp {{numberWithCommas(currentModel.harga_dewasa*2)}},-</span></div>
+			<div class="stok">Harga pasang anak : <span>Rp {{numberWithCommas(currentModel.harga_anak*2)}},-</span></div>
+			<div class="ukuran">Ukuran : 
+				<select name="">
+					<option value="S">S</option>
+					<option value="S">M</option>
+					<option value="S">L</option>
+					<option value="S">XL</option>
+				</select>
+			</div>
+			<div class="jumlah stok">
+				Jumlah : 
+				<input type="number" style="width: 100px" ng-model="jumlahBeli"> 
+			</div>
+
+			<button ng-click="buyItem(currentModel)">
+				<span class="icon">
+					<i class="fa fa-cart-plus"></i>
+				</span>
+				<span class="text">
+					Beli Sekarang
+				</span>
+			</button>
+		</div>
+	</div>
+</div>
