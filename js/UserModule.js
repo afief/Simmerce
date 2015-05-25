@@ -130,7 +130,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var defer = $q.defer();
 			var ini = this;
 
-			$http.get(apiUrl + "data.json").
+			$http.get(apiUrl + "/batiks").
 			success(defer.resolve).
 			catch(defer.reject);
 
@@ -152,7 +152,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var defer = $q.defer();
 			var ini = this;
 
-			$http.post(apiUrl + "/pesan", serialize(data)).
+			$http.post(apiUrl + "pesan", serialize(data)).
 			success(defer.resolve).
 			catch(defer.reject);
 
@@ -162,7 +162,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var defer = $q.defer();
 			var ini = this;
 
-			$http.get(apiUrl + "/pesanan").
+			$http.get(apiUrl + "pesanan").
 			success(defer.resolve).
 			catch(defer.reject);
 

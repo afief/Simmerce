@@ -15,6 +15,27 @@ $app->get("/batik/:parent", function($parent) {
 
 	echo json_encode($result);
 });
+$app->get("/batiks", function() {
+
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$res = $db->select("tik_batiks", "*", ["ORDER" => "timestamp DESC"]);
+	if ($res) {
+		for ($i = 0; $i < count($res); $i++) {
+			$res[$i]["harga_dewasa"] = intval($res[$i]["harga_dewasa"]);
+			$res[$i]["harga_anak"] = intval($res[$i]["harga_anak"]);
+		}
+		$result->status = true;
+		$result->data = $res;
+	}
+
+	echo json_encode($result);
+});
+
+
 $app->get("/pesanan", function() {
 	global $db;
 
@@ -71,6 +92,8 @@ $app->post("/pesan", function() {
 			"jumlah" => $data["jumlah"],
 			"alamat" => $data["alamat"],
 			"kota" => $data["kota"],
+			"kodepos" => $data["kodepos"],
+			"provinsi" => $data["provinsi"],
 			"image" => $imageurl,
 			"status" => $data["status"],
 		]);

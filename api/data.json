@@ -2,12 +2,18 @@
 	"status": true,
 	"data": [
 		{
-			"nama" : "Blue Petal",
+			"nama" : "Sarimbit 2",
 			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar biru dan berbagai motif yang dapat dipilih dan dikombinasikan.",
 			"harga_dewasa" : 117500,
 			"harga_anak"   : 67500
 		},{
-			"nama" : "Red Petal",
+			"nama" : "Sarimbit 3",
+			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar merah dan berbagai motif yang dapat dipilih dan dikombinasikan.",
+			"harga_dewasa" : 117500,
+			"harga_anak"   : 67500
+		},
+		{
+			"nama" : "Sarimbit 1",
 			"keterangan" : "Batik Keluarga Sarimbit. Dengan warna dasar merah dan berbagai motif yang dapat dipilih dan dikombinasikan.",
 			"harga_dewasa" : 117500,
 			"harga_anak"   : 67500

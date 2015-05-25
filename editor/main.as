@@ -14,9 +14,11 @@
 		
 		var aktif:MovieClip = null;
 		var ayah:MovieClip;
+		var ayah2:MovieClip;
 		var ibu1:MovieClip;
 		var ibu2:MovieClip;
 		var cowo:MovieClip;
+		var cowo2:MovieClip;
 		var cewe1:MovieClip;
 		var cewe2:MovieClip;
 		
@@ -50,12 +52,16 @@
 			
 			ayah = mc_ayah;
 			ayah.stop();
+			ayah2 = mc_ayah2;
+			ayah2.stop();
 			ibu1 = mc_ibu1;
 			ibu1.stop();
 			ibu2 = mc_ibu2;
 			ibu2.stop();
 			cowo = mc_cowo;
 			cowo.stop();
+			cowo2 = mc_cowo2;
+			cowo2.stop();
 			cewe1 = mc_cewe1;
 			cewe1.stop();
 			cewe2 = mc_cewe2;
@@ -64,6 +70,13 @@
 			hitAyah.addEventListener(MouseEvent.CLICK, function() {
 									  	desainPilih(ayah);
 									  });
+			hitAyah2.addEventListener(MouseEvent.CLICK, function() {
+									  	desainPilih(ayah2);
+									  });
+			hitAyah3.addEventListener(MouseEvent.CLICK, function() {
+									  	desainPilih(ayah2);
+									  });
+									  
 			hitIbu1.addEventListener(MouseEvent.CLICK, function() {
 									  	desainPilih(ibu1);
 									  });
@@ -73,6 +86,13 @@
 			hitCowo.addEventListener(MouseEvent.CLICK, function() {
 									  	desainPilih(cowo);
 									  });
+			hitCowo2.addEventListener(MouseEvent.CLICK, function() {
+									  	desainPilih(cowo2);
+									  });
+			hitCowo3.addEventListener(MouseEvent.CLICK, function() {
+									  	desainPilih(cowo2);
+									  });
+									  
 			hitCewe1.addEventListener(MouseEvent.CLICK, function() {
 									  	desainPilih(cewe1);
 									  });

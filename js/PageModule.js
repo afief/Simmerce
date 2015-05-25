@@ -107,6 +107,8 @@ pageModule.service("pesanan", function() {
 	this.jumlah = {};
 	this.alamat = "";
 	this.kota = "";
+	this.kodepos = "";
+	this.provinsi = "";
 	this.status = "belum lunas";
 	this.sudahDesain = false;
 	this.image64 = "";
@@ -116,6 +118,8 @@ pageModule.service("pesanan", function() {
 		this.jumlah = {};
 		this.alamat = "";
 		this.kota = "";
+		this.kodepos = "";
+		this.provinsi = "";
 		this.image64 = "";
 		this.status = "belum lunas";
 	}
@@ -126,6 +130,8 @@ pageModule.service("pesanan", function() {
 			jumlah : JSON.stringify(this.jumlah),
 			alamat : this.alamat,
 			kota : this.kota,
+			kodepos: this.kodepos,
+			provinsi: this.provinsi,
 			status : this.status
 		}
 	}
@@ -259,7 +265,7 @@ pageModule.controller('EditController', ['$scope', '$rootScope', 'user', '$locat
 		$location.path("/order");
 	}
 
-	if (isNaN($routeParams.ke) || ($routeParams.ke < 1) || ($routeParams.ke > 2)) {
+	if (isNaN($routeParams.ke) || ($routeParams.ke < 1) || ($routeParams.ke > 3)) {
 		$location.path("/home");
 		return;
 	}
@@ -333,10 +339,14 @@ pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$loc
 	$scope.ongkir = 10000;
 	$scope.kota = "";
 	$scope.alamat = "";
+	$scope.kodepos = "";
+	$scope.provinsi = "";
 
 	$scope.buyItem = function() {
 		pesanan.kota = $scope.kota;
 		pesanan.alamat = $scope.alamat;
+		pesanan.kodepos = $scope.kodepos;
+		pesanan.provinsi = $scope.provinsi;
 
 		$root.loadingSrv.show();
 		user.setPesanan(pesanan.compile()).then(function(res) {
