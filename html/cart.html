@@ -1,0 +1,92 @@
+<div class="page cart">
+	
+	<div class="row container">
+		<h3 class="title">Keranjang Belanja</h3>
+
+		<div class="wrapper part cart">
+			<table ng-show="pesanan.length">
+				<tr>
+					<th>Model</th>
+					<th>No #ref</th>
+					<th>Ayah</th>
+					<th>Ibu</th>
+					<th>Anak Laki-laki</th>
+					<th>Anak Perempuan</th>
+					<th>Total Harga</th>
+					<th>Status</th>
+				</tr>
+				<tr ng-repeat="item in pesanan track by $index">
+					<td>
+						<img ng-src="{{item.image}}" alt="">
+					</td>
+					<td>
+						<b>{{item.ref}}</b>
+					</td>
+					<td>
+						<div>{{item.jumlah.ayah}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ayah * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.ibu}} x {{numberWithCommas(harga_dewasa)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.ibu * harga_dewasa)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.laki}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.laki * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div>{{item.jumlah.perempuan}} x {{numberWithCommas(harga_anak)}}</div>
+						<div><b>Rp {{numberWithCommas(item.jumlah.perempuan * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						<div> +ongkir 10.000</div>
+						<div><b>Rp {{numberWithCommas(totalHarga(item.jumlah) + 10000)}},-</b></div>
+					</td>
+					<td>{{item.status}}</td>
+				</tr>
+			</table>
+			<div  ng-hide="pesanan.length">
+				Belum ada pemesanan SarimbIT. <a href="#/model">Lakukan Pemesanan</a>
+			</div>
+		</div>
+
+		<h3 class="title" style="margin-top: 20px;">Metode Pembayaran</h3>
+		<div class="part infoproduk">
+		<div class="wrapper">
+			Pembayaran bisa dilakukan melalui salah satu nomor rekening berikut
+			<ul>
+				<li>
+					BCA : <b>233 23 99 471</b> an. Noviana Riza
+				</li>
+				<li>
+					Mandiri :  <b>130 00 04050 715</b> an.  Noviana Riza
+				</li>
+			</ul>
+			Konfimasi pembayaran melalui SMS <b>081224464749</b> atau melalui email <b>cs@technobatik.com</b> dengan format
+				<blockquote>
+					<b>konfirmasi</b> <i>spasi</i> <b>no#ref</b> <i>spasi</i> <b>nama bank (BCA/Mandiri)</b>
+				</blockquote>
+			</div>
+		</div>
+
+		<h3 class="title">Pengiriman</h3>
+		<div class="part infoproduk">
+			<div class="wrapper">
+				Pembuatan baju membutuhkan waktu 2 minggu dan maksimal 1 bulan sampai barang diterima per paket (ayah, ibu, 1 anak laki-laki, 1 anak perempuan). Waktu akan disesuaikan dengan jumlah pemesanan. Informasi lebih lanjut, baca <a href="#/sk">Syarat & Ketentuan</a>.
+			</div>
+			<div class="wrapper">
+				Kami mengirimkan barang dengan menggunakan jasa kurir terbaik : 
+			</div>
+			<a href="#" class="wrapper shipping">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/lex2.jpg" alt="">
+				<img src="http://srv-live-01.lazada.co.id/cms/logo/themes_2014/53x39_JNE.jpg" alt="">
+				<img src="http://srv-live-01.lazada.co.id/cms/logo/themes_2014/53x39_Pandu-logistic.jpg" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/first-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/rpx-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/tiki-53x39.png" alt="">
+				<img src="http://srv-live.lazada.co.id/cms/logo/themes_2014/nexlogistics-59x39.png" alt="">
+			</a>
+		</div>
+	</div>
+
+</div>
