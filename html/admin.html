@@ -30,6 +30,7 @@
 					<th>Ibu</th>
 					<th>Anak Laki-laki</th>
 					<th>Anak Perempuan</th>
+					<th>Alamat</th>
 					<th>Total Harga</th>
 					<th>Status</th>
 				</tr>
@@ -55,6 +56,9 @@
 					<td>
 						<div>{{item.jumlah.perempuan}} x {{numberWithCommas(harga_anak)}}</div>
 						<div><b>Rp {{numberWithCommas(item.jumlah.perempuan * harga_anak)}},-</b></div>
+					</td>
+					<td>
+						{{item.alamat}}, {{item.kota}}, {{item.provinsi}}, {{item.kodepos}}
 					</td>
 					<td>
 						<div> +ongkir 10.000</div>
