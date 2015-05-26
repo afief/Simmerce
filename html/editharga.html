@@ -1,0 +1,77 @@
+<div class="page model">
+	<div class="row container">
+		<header style="padding: 20px;">
+			<div class="buttons">
+				<button ng-click="changePath('/admin')">
+					<span class="icon"><i class="fa fa-tags"></i></span>
+					<span class="text">Lihat Pesanan Belum Lunas</span>
+				</button>
+				<button ng-click="changePath('/admin/lunas')">
+					<span class="icon"><i class="fa fa-money"></i></span>
+					<span class="text">Lihat Pesanan Lunas</span>
+				</button>
+				<button ng-click="changePath('/admin/editharga')">
+					<span class="icon"><i class="fa fa-usd"></i></span>
+					<span class="text">Pengaturan Harga</span>
+				</button>
+			</div>
+		</header>
+		
+		<h3 class="title">Edit Harga</h3>
+
+		<table class="editharga">
+			<tr ng-repeat="bat in batiks">
+				<td class="trmg">
+					<img ng-src="editor/model{{bat.id}}.png" alt="">
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>Nama</td>
+							<td><input type="text" ng-model="bat.nama"></td>
+						</tr>
+						<tr>
+							<td>Keterangan</td>
+							<td><textarea type="text" ng-model="bat.keterangan"></textarea></td>
+						</tr>
+						<tr>
+							<td>Harga Dewasa</td>
+							<td><input type="text" ng-model="bat.harga_dewasa"></td>
+						</tr>
+						<tr>
+							<td>Harga Anak-anak</td>
+							<td><input type="text" ng-model="bat.harga_anak"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<h4 style="margin: 10px auto; display: table">Edit Ongkos Kirim</h4>
+		<table class="editharga">
+			<tr>
+				<td>
+					Ongkir Pulau Jawa
+				</td>
+				<td>
+					<input type="number" ng-model="ongkir.pulau_jawa">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Ongkir Luar Jawa
+				</td>
+				<td>
+					<input type="number" ng-model="ongkir.luar_jawa">
+				</td>
+			</tr>
+		</table>
+		
+		<div class="buttons">
+		<button ng-click="saveData()">
+				<span class="icon"><i class="fa fa-floppy-o"></i></span>
+				<span class="text">Simpan</span>
+			</button>
+		</div>
+	</div>
+</div>

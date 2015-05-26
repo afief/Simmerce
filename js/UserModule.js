@@ -130,7 +130,17 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var defer = $q.defer();
 			var ini = this;
 
-			$http.get(apiUrl + "/batiks").
+			$http.get(apiUrl + "batiks").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		updateData: function(batiks) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "batiks", serialize({batiks: batiks})).
 			success(defer.resolve).
 			catch(defer.reject);
 
@@ -203,6 +213,26 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 			var ini = this;
 
 			$http.get(apiUrl + "semua_pesanan_lunas").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		getOngkir: function() {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.get(apiUrl + "ongkir").
+			success(defer.resolve).
+			catch(defer.reject);
+
+			return defer.promise;
+		},
+		setOngkir: function(ongkir) {
+			var defer = $q.defer();
+			var ini = this;
+
+			$http.post(apiUrl + "ongkir", serialize(ongkir)).
 			success(defer.resolve).
 			catch(defer.reject);
 

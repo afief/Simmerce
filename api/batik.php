@@ -34,6 +34,28 @@ $app->get("/batiks", function() {
 
 	echo json_encode($result);
 });
+$app->post("/batiks", function() {
+
+	global $db;
+
+	$result = new stdClass();
+	$result->status = true;
+
+	$data = getPosts();
+	if (isset($data["batiks"])) {
+		$batiks = $data["batiks"];
+		for ($i = 0; $i < count($batiks); $i++) {
+			$db->update("tik_batiks", [
+				"nama" => $batiks[$i]["nama"],
+				"keterangan" => $batiks[$i]["keterangan"],
+				"harga_dewasa" => $batiks[$i]["harga_dewasa"],
+				"harga_anak" => $batiks[$i]["harga_anak"]],
+				["id" => $batiks[$i]["id"]]);
+		}
+	}
+
+	echo json_encode($result);
+});
 
 
 $app->get("/pesanan", function() {
@@ -49,9 +71,43 @@ $app->get("/pesanan", function() {
 		$result->data = $res;		
 	}
 
+	echo json_encode($result);
+});
+
+$app->get("/ongkir", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$res = $db->select("tik_options", ["name", "value"], ["name" => ["pulau_jawa", "luar_jawa"]]);
+	if ($res) {
+		$result->status = true;
+		$result->data = new stdClass();
+		$result->data->pulau_jawa = intval($res[0]["value"]);
+		$result->data->luar_jawa = intval($res[1]["value"]);
+	}
 
 	echo json_encode($result);
 });
+$app->post("/ongkir", function() {
+	global $db;
+
+	$result = new stdClass();
+	$result->status = false;
+
+	$pulau_jawa = getPosts("pulau_jawa");
+	$luar_jawa = getPosts("luar_jawa");
+
+	$ujawa = $db->update("tik_options", ["value" => $pulau_jawa], ["name" => "pulau_jawa"]);
+	$uluar = $db->update("tik_options", ["value" => $luar_jawa], ["name" => "luar_jawa"]);
+	if ($ujawa || $uluar) {
+		$result->status = true;
+	}
+
+	echo json_encode($result);
+});
+
 $app->get("/semua_pesanan", function() {
 	global $db;
 
@@ -160,6 +216,7 @@ $app->post("/pesan", function() {
 			"kota" => $data["kota"],
 			"kodepos" => $data["kodepos"],
 			"provinsi" => $data["provinsi"],
+			"ongkir" => $data["ongkir"],
 			"image" => $imageurl,
 			"status" => $data["status"],
 		]);

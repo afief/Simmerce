@@ -34,7 +34,10 @@
 						<tr>
 							<td>Biaya Pengiriman</td>
 							<td>
-								Rp {{numberWithCommas(ongkir)}},-
+								<select ng-model="pongkir">
+									<option value="{{ongkir.pulau_jawa}}">Pulau Jawa {{ongkir.pulau_jawa}}</option>
+									<option value="{{ongkir.luar_jawa}}">Luar Pulau Jawa {{ongkir.luar_jawa}}</option>
+								</select>
 							</td>
 						</tr>
 					</table>

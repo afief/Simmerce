@@ -42,6 +42,12 @@ pageModule.config(['$routeProvider',
 			headerShow: true,
 			authenticate: true
 		}).
+		when('/admin/editharga', {
+			templateUrl: 'html/editharga.html',
+			controller: 'EditHargaController',
+			headerShow: true,
+			authenticate: true
+		}).
 
 		when('/profile', {
 			templateUrl: 'html/profile.html',
@@ -124,6 +130,7 @@ pageModule.service("pesanan", function() {
 	this.status = "belum lunas";
 	this.sudahDesain = false;
 	this.image64 = "";
+	this.pongkir = 0;
 	this.reset = function() {
 		this.sudahDesain = false;
 		this.pilihan = {};
@@ -133,6 +140,7 @@ pageModule.service("pesanan", function() {
 		this.kodepos = "";
 		this.provinsi = "";
 		this.image64 = "";
+		this.pongkir = 0;
 		this.status = "belum lunas";
 	}
 	this.compile = function() {
@@ -144,6 +152,7 @@ pageModule.service("pesanan", function() {
 			kota : this.kota,
 			kodepos: this.kodepos,
 			provinsi: this.provinsi,
+			ongkir: this.pongkir,
 			status : this.status
 		}
 	}
@@ -187,6 +196,13 @@ pageModule.run(["$rootScope", "user", "$location", 'loadingSrv', function($root,
 			$root.loadingSrv.hide();
 		});
 	}
+
+	user.getOngkir().then(function(res) {
+		if (res.status) {
+			$root.ongkir = res.data;
+			lgi("ongkir", $root.ongkir);
+		}
+	});
 
 	$root.user = user;
 	$root.loadingSrv = loadingSrv;
@@ -341,6 +357,7 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 
 pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$location', "pesanan",
 	function($scope, $root, user, $location, pesanan){
+		lgi("Ongkir", $root.ongkir);
 
 		if (!pesanan.sudahDesain) {
 			$location.path("/model");
@@ -348,7 +365,7 @@ pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$loc
 		}
 
 		$scope.previewImage = pesanan.image64;
-		$scope.ongkir = 10000;
+		$scope.pongkir = $root.ongkir.pulau_jawa;
 		$scope.kota = "";
 		$scope.alamat = "";
 		$scope.kodepos = "";
@@ -359,6 +376,7 @@ pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$loc
 			pesanan.alamat = $scope.alamat;
 			pesanan.kodepos = $scope.kodepos;
 			pesanan.provinsi = $scope.provinsi;
+			pesanan.pongkir = $scope.pongkir;
 
 			$root.loadingSrv.show();
 			user.setPesanan(pesanan.compile()).then(function(res) {
@@ -368,6 +386,10 @@ pageModule.controller('AlamatController', ['$scope', '$rootScope', 'user', '$loc
 				$root.loadingSrv.hide();
 				alert("Gagal tersambung ke internet");
 			});
+		}
+
+		$scope.ongkirChange = function(r) {
+			lgi(r);
 		}
 	}]);
 
@@ -387,6 +409,28 @@ pageModule.controller('ProfileController', ['$scope', '$rootScope', 'user', '$lo
 }]);
 pageModule.controller('HomeController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
 
+
+}]);
+pageModule.controller('EditHargaController', ['$scope', '$rootScope', 'user', '$location', function($scope, $root, user, $location){
+
+	$scope.batiks = [];
+	user.getData().then(function(res) {
+		if (res.status) {
+			$scope.batiks = res.data;
+			lgi(res.data);
+		}
+	});
+
+	$scope.saveData = function() {
+		user.setOngkir($root.ongkir).then(function(res) {
+			if (res.status) {
+				lgi("ONGKIR BERUBAH");
+			}
+		});
+		user.updateData($scope.batiks).then(function(res) {
+			lgi(res);
+		});
+	}
 
 }]);
 
@@ -481,6 +525,8 @@ pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$locat
 			$scope.pesanan = res.data;
 			$root.numCart = $scope.pesanan.length;
 			for (var i = 0; i < $scope.pesanan.length; i++) {
+				$scope.pesanan[i].ongkir = parseInt($scope.pesanan[i].ongkir);
+
 				$scope.pesanan[i].image = apiUrl + $scope.pesanan[i].image;
 				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
 			}

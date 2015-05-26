@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.9 on Mon, 04 May 2015 04:23:48 +0200 (0.2991s) */
+/* compiled by scssphp v0.0.9 on Tue, 26 May 2015 02:32:13 +0200 (0.5396s) */
 
 @font-face {
   font-family: "Comic Neue";
@@ -275,6 +275,12 @@ body {
     .container.profile button {
       display: table;
       margin: 0px auto; }
+  .container .editharga {
+    margin: 10px auto; }
+    .container .editharga tr td {
+      padding-right: 15px; }
+    .container .editharga tr td.trmg {
+      width: 200px; }
 
 .loading {
   position: fixed;
