@@ -211,7 +211,7 @@ $app->post("/pesan", function() {
 			"id_user" => $id_user,
 			"ref" => makeUniqueId(5),
 			"pesanan" => $data["pesanan"],
-			"ukuran" => isset($data["ukuran"]) ? $data["ukuran"] : "{\"ayah\":\"L\",\"ibu\":\"M\",\"laki\":\"L\",\"perempuan\":\"P\"}",
+			"ukuran" => isset($data["ukuran"]) ? $data["ukuran"] : "{'ayah':'XL','ibu':'XL','laki':'XL','perempuan':'XL'}",
 			"jumlah" => $data["jumlah"],
 			"alamat" => $data["alamat"],
 			"kota" => $data["kota"],

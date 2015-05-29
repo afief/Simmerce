@@ -11,6 +11,7 @@ userModule.factory("user", ["$http","$q", function($http, $q) {
 		key = newKey;
 		window.localStorage.setItem("key", key);
 		console.log("change key", key);
+		$http.defaults.headers.common.key = newKey;
 	}
 	serialize = function(obj, prefix) {
 		var str = [];
