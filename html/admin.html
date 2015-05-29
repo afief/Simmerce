@@ -44,18 +44,22 @@
 					<td>
 						<div>{{item.jumlah.ayah}} x {{numberWithCommas(harga_dewasa)}}</div>
 						<div><b>Rp {{numberWithCommas(item.jumlah.ayah * harga_dewasa)}},-</b></div>
+						<div><b>{{item.ukuran.ayah}}</b></div>
 					</td>
 					<td>
 						<div>{{item.jumlah.ibu}} x {{numberWithCommas(harga_dewasa)}}</div>
 						<div><b>Rp {{numberWithCommas(item.jumlah.ibu * harga_dewasa)}},-</b></div>
+						<div><b>{{item.ukuran.ibu}}</b></div>
 					</td>
 					<td>
 						<div>{{item.jumlah.laki}} x {{numberWithCommas(harga_anak)}}</div>
 						<div><b>Rp {{numberWithCommas(item.jumlah.laki * harga_anak)}},-</b></div>
+						<div><b>{{item.ukuran.laki}}</b></div>
 					</td>
 					<td>
 						<div>{{item.jumlah.perempuan}} x {{numberWithCommas(harga_anak)}}</div>
 						<div><b>Rp {{numberWithCommas(item.jumlah.perempuan * harga_anak)}},-</b></div>
+						<div><b>{{item.ukuran.perempuan}}</b></div>
 					</td>
 					<td>
 						{{item.alamat}}, {{item.kota}}, {{item.provinsi}}, {{item.kodepos}}

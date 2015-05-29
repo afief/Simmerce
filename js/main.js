@@ -81,6 +81,12 @@ var apiUrl = "api/";
 			loadingSrv.isShow = false;
 		});
 	}]);
+	
+	batikOL.run(["$rootScope", "$templateCache", function($rootScope, $templateCache) {
+		$rootScope.$on("$viewContentLoaded", function() {
+			$templateCache.removeAll();
+		});
+	}]);
 
 })();
 

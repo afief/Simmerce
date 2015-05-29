@@ -19,30 +19,67 @@
 						<tr>
 							<th></th>
 							<th>Jumlah</th>
+							<th>Ukuran</th>
 							<th>Harga Satuan</th>
 							<th>Total Harga</th>
 						</tr>
 						<tr>
 							<td>Ayah</td>
 							<td><input type="text" ng-model="jumlah.ayah"></td>
+							<td>
+								<select ng-model="ukuran.ayah">
+									<option value="XS">XS</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+							</td>
 							<td>Rp {{numberWithCommas(harga.ayah)}},-</td>
 							<td>Rp {{numberWithCommas(harga.ayah * jumlah.ayah)}},-</td>
 						</tr>
 						<tr>
 							<td>Ibu</td>
 							<td><input type="text" ng-model="jumlah.ibu"></td>
+							<td>
+								<select ng-model="ukuran.ibu">
+									<option value="XS">XS</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+							</td>
 							<td>Rp {{numberWithCommas(harga.ibu)}},-</td>
 							<td>Rp {{numberWithCommas(harga.ibu * jumlah.ibu)}},-</td>
 						</tr>
 						<tr>
 							<td>Anak Laki-laki</td>
 							<td><input type="text" ng-model="jumlah.laki"></td>
+							<td>
+								<select ng-model="ukuran.laki">
+									<option value="XS">XS</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+							</td>
 							<td>Rp {{numberWithCommas(harga.laki)}},-</td>
 							<td>Rp {{numberWithCommas(harga.laki * jumlah.laki)}},-</td>
 						</tr>
 						<tr>
 							<td>Anak Perempuan</td>
 							<td><input type="text" ng-model="jumlah.perempuan"></td>
+							<td>
+								<select ng-model="ukuran.perempuan">
+									<option value="XS">XS</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+							</td>
 							<td>Rp {{numberWithCommas(harga.perempuan)}},-</td>
 							<td>Rp {{numberWithCommas(harga.perempuan * jumlah.perempuan)}},-</td>
 						</tr>

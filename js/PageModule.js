@@ -123,6 +123,7 @@ pageModule.service("loadingSrv", function() {
 pageModule.service("pesanan", function() {
 	this.pilihan = {};
 	this.jumlah = {};
+	this.ukuran = {};
 	this.alamat = "";
 	this.kota = "";
 	this.kodepos = "";
@@ -135,6 +136,7 @@ pageModule.service("pesanan", function() {
 		this.sudahDesain = false;
 		this.pilihan = {};
 		this.jumlah = {};
+		this.ukuran = {};
 		this.alamat = "";
 		this.kota = "";
 		this.kodepos = "";
@@ -153,6 +155,7 @@ pageModule.service("pesanan", function() {
 			kodepos: this.kodepos,
 			provinsi: this.provinsi,
 			ongkir: this.pongkir,
+			ukuran: JSON.stringify(this.ukuran),
 			status : this.status
 		}
 	}
@@ -329,6 +332,9 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 			pesanan.jumlah = {
 				ayah: 1, ibu: 1, laki: 1, perempuan: 1
 			}
+			pesanan.ukuran = {
+				ayah: "L", ibu: "M", laki: "L", perempuan: "M"
+			}
 			$scope.harga = {
 				ayah: $scope.currentModel.harga_dewasa, 
 				ibu: $scope.currentModel.harga_dewasa,
@@ -346,6 +352,8 @@ pageModule.controller('OrderController', ['$scope', '$rootScope', 'user', '$loca
 			total += pesanan.jumlah[k] * $scope.harga[k];
 		}
 		$scope.jumlah = pesanan.jumlah;
+		$scope.ukuran = pesanan.ukuran;
+
 		return total;
 	}
 	$scope.buyItem = function() {
@@ -482,6 +490,7 @@ pageModule.controller('AdminController', ['$scope', '$rootScope', 'user', '$loca
 
 			for (var i = 0; i < $scope.pesanan.length; i++) {
 				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
+				$scope.pesanan[i].ukuran = JSON.parse($scope.pesanan[i].ukuran);
 			}
 			lgi($scope.pesanan);
 		}
@@ -529,6 +538,7 @@ pageModule.controller('CartController', ['$scope', '$rootScope', 'user', '$locat
 
 				$scope.pesanan[i].image = apiUrl + $scope.pesanan[i].image;
 				$scope.pesanan[i].jumlah = JSON.parse($scope.pesanan[i].jumlah);
+				$scope.pesanan[i].ukuran = JSON.parse($scope.pesanan[i].ukuran);
 			}
 		}
 		$root.loadingSrv.hide();

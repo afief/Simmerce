@@ -115,7 +115,7 @@ $app->get("/semua_pesanan", function() {
 	$result->status = false;
 
 	$res = $db->select("tik_pesanan", ["[>]me_users" => ["id_user" => "id"]], 
-		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.alamat", "tik_pesanan.kota",
+		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.ukuran", "tik_pesanan.alamat", "tik_pesanan.kota",
 		"tik_pesanan.kodepos", "tik_pesanan.provinsi", "tik_pesanan.image", "tik_pesanan.status"],
 		["tik_pesanan.status" => "belum lunas"]);
 	if ($res) {
@@ -132,7 +132,7 @@ $app->get("/semua_pesanan_lunas", function() {
 	$result->status = false;
 
 	$res = $db->select("tik_pesanan", ["[>]me_users" => ["id_user" => "id"]], 
-		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.alamat", "tik_pesanan.kota",
+		["me_users.username", "me_users.email", "me_users.nama", "tik_pesanan.id", "tik_pesanan.jumlah", "tik_pesanan.ukuran", "tik_pesanan.alamat", "tik_pesanan.kota",
 		"tik_pesanan.kodepos", "tik_pesanan.provinsi", "tik_pesanan.image", "tik_pesanan.status"],
 		["tik_pesanan.status" => "lunas"]);
 	if ($res) {
@@ -211,6 +211,7 @@ $app->post("/pesan", function() {
 			"id_user" => $id_user,
 			"ref" => makeUniqueId(5),
 			"pesanan" => $data["pesanan"],
+			"ukuran" => $data["ukuran"],
 			"jumlah" => $data["jumlah"],
 			"alamat" => $data["alamat"],
 			"kota" => $data["kota"],
